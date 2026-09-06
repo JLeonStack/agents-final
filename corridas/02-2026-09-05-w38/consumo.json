@@ -1,0 +1,39 @@
+{
+  "por_modelo": {
+    "claude-opus-5": {
+      "llamadas": 63,
+      "in": 126,
+      "cache_w": 347722,
+      "cache_r": 5265845,
+      "out": 87777,
+      "usd": 7.001239999999999,
+      "subagente": 57
+    },
+    "claude-sonnet-5": {
+      "llamadas": 13,
+      "in": 26,
+      "cache_w": 91426,
+      "cache_r": 776675,
+      "out": 8285,
+      "usd": 0.46680200000000005,
+      "subagente": 13
+    },
+    "claude-haiku-4-5-20251001": {
+      "llamadas": 3,
+      "in": 26,
+      "cache_w": 52064,
+      "cache_r": 80232,
+      "out": 448,
+      "usd": 0.0753692,
+      "subagente": 3
+    }
+  },
+  "total": {
+    "llamadas": 79,
+    "in": 178,
+    "cache_w": 491212,
+    "cache_r": 6122752,
+    "out": 96510,
+    "usd": 7.5434111999999995
+  }
+}
