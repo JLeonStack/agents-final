@@ -1,0 +1,157 @@
+{
+  "semana": "2026-W39",
+  "rango": "2026-09-21 / 2026-09-27",
+  "generado_utc": "2026-09-05T22:42:17Z",
+  "modelo": "claude-sonnet-5",
+  "angulo_semanal": {
+    "titular": "Stop arguing coverage. Start arguing markets.",
+    "tesis": "En la conversacion de presupuesto con finanzas, el argumento que hoy sostiene la linea de contenido multilingue -cuantos idiomas o mercados alcanza el programa- es una metrica de cobertura, y cobertura no es un lenguaje que finanzas convierta en una decision de inversion. El pilar InRegion ya nombra la vara que si se convierte: campanas alineadas con demanda local, rivales locales y necesidades del comprador en cada mercado. El argumento que sobrevive la reunion no es cuantos mercados se alcanzan, sino que pasa en cada uno cuando se invierte ahi.",
+    "pilar_native-reach": "InRegion",
+    "publico": "CMOs de empresas enterprise que en las proximas seis semanas tienen que defender ante finanzas la linea de presupuesto de contenido multilingue, y hoy la sostienen con un argumento de cobertura que no le dice nada a alguien que decide en terminos de retorno y posicion competitiva.",
+    "cta": "https://www.acme-multilingual.example/2026-native-reach-state-of-the-industry/"
+  },
+  "piezas": [
+    {
+      "id": "blog-01",
+      "canal": "blog",
+      "fecha": "2026-09-22",
+      "titulo": "Stop Arguing Coverage. Start Arguing Markets.",
+      "cuerpo": "You walk into the budget meeting with the slide that says you're live in a dozen-plus languages. The CFO's first question is the one that slide can't answer: which of those markets is actually working?\n\nThat's where the coverage argument runs out of road. How many languages a program reaches is a statement about the size of the operation. It says nothing about whether the operation is producing anything finance would call a return. Coverage answers \"how big.\" Finance is asking \"so what.\"\n\nThe fix isn't a bigger coverage number. It's a different kind of number, measured in the vocabulary finance already speaks: demand, competitive position, customer behavior, market by market. That is exactly the language InRegion already speaks: \"campaigns should match local demand, local rivals, and local buyer needs.\" Trends, competitors, and customer needs aren't localization concepts - they're the three questions a CFO asks about any investment. The argument that survives the meeting isn't \"we're live in fourteen markets.\" It's \"here's what happened in this market when we showed up in it correctly.\"\n\nCase by case, that argument already has evidence behind it. Northvale launched Spanish- and Polish-language sites in 21 days - a speed-to-market result, not a coverage count. Localized content drove a 147% increase in conversions. SEO-built content lifted conversions in Brazil by 63%. Railvia posted 44% compound annual revenue growth over four years. None of these get averaged into one \"return on multilingual content\" figure - there isn't one, and a program-wide ROI number would sound precise while proving nothing. Each stands on its own market, its own result.\n\nThat's four data points, all from Acme's own customers, which is exactly why a CFO deciding next year's budget shouldn't have to take our word alone. It's also exactly what the 2026 Native Reach State of the Industry report exists for: evidence of what market-aligned content returns across the industry, not just across our customers.\n\nThe next budget conversation doesn't need a bigger coverage slide. It needs a market-by-market case, backed by evidence wider than any single company's customer list.",
+      "cta": "Read the 2026 Native Reach State of the Industry report - https://www.acme-multilingual.example/2026-native-reach-state-of-the-industry/",
+      "firma_autor": "D. Reyes",
+      "keywords": [
+        "justify multilingual content budget",
+        "content localization business case for finance",
+        "multilingual marketing budget justification",
+        "InRegion content performance"
+      ],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/sitio-home.md"
+      ]
+    },
+    {
+      "id": "news-01",
+      "canal": "newsletter",
+      "fecha": "2026-09-24",
+      "titulo": "Your Coverage Slide Won't Survive the Budget Meeting",
+      "cuerpo": "If the case for your multilingual content budget is how many markets you're live in, it will not survive the next finance meeting. Coverage tells finance how big the program is. It does not tell them whether the program works.\n\nWhat finance does fund is InRegion: campaigns aligned to local demand, local rivals, and local buyer needs, market by market. That is a demand argument, not a language argument, and it already has evidence behind it, case by case. Northvale launched Spanish- and Polish-language sites in 21 days. Localized content drove a 147% increase in conversions. SEO-built content lifted conversions in Brazil by 63%. Railvia posted 44% compound annual revenue growth over four years. Four separate results, four separate markets, never averaged into one return figure - because there isn't one, and there doesn't need to be.\n\nThose four cases are Acme's own evidence. For the wider industry picture - what market-aligned content returns beyond our own customer base - start with the 2026 Native Reach State of the Industry report.",
+      "cta": "Get the 2026 Native Reach State of the Industry report - https://www.acme-multilingual.example/2026-native-reach-state-of-the-industry/",
+      "firma_autor": "D. Reyes",
+      "keywords": [
+        "budget season",
+        "InRegion",
+        "market-by-market evidence"
+      ],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/sitio-home.md"
+      ]
+    },
+    {
+      "id": "li-01",
+      "canal": "linkedin",
+      "fecha": "2026-09-22",
+      "titulo": "Coverage convinces marketing. It doesn't convince finance.",
+      "cuerpo": "If the number you bring to your budget review is how many languages or markets your program is live in, that number describes size - not performance.\n\nWhat finance listens to is the InRegion question: local demand, local rivals, and local buyer needs, market by market. That's demand and competitive position, not language quality.\n\nThe record already shows what this looks like: Railvia's four-year investment in multilingual content produced 44% compound annual revenue growth - a market result, not a coverage count.",
+      "cta": "The 2026 Native Reach State of the Industry report: https://www.acme-multilingual.example/2026-native-reach-state-of-the-industry/",
+      "firma_autor": null,
+      "keywords": [],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/sitio-home.md"
+      ]
+    },
+    {
+      "id": "li-02",
+      "canal": "linkedin",
+      "fecha": "2026-09-24",
+      "titulo": "Finance doesn't fund how many markets you're in.",
+      "cuerpo": "It funds what happens in the markets where you've already invested.\n\nThe InRegion read - local trends, competitors, customer needs - is what turns a content line item into a business case. It's market by market, not a language count nobody can act on.\n\nIn Brazil, localized SEO content produced an 63% increase in conversions. That's the kind of evidence a budget conversation needs - one market, one result, not an average.",
+      "cta": "The report goes deeper on what market performance looks like beyond a single case: https://www.acme-multilingual.example/2026-native-reach-state-of-the-industry/",
+      "firma_autor": null,
+      "keywords": [],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/sitio-home.md"
+      ]
+    },
+    {
+      "id": "x-01",
+      "canal": "x",
+      "fecha": "2026-09-23",
+      "titulo": "A language count tells finance how big your program is, not whether it works.",
+      "cuerpo": "Local demand, rivals, and buyer needs, market by market - that's the argument finance funds. A language count tells finance how big your program is, not whether it works.",
+      "cta": "The 2026 report: https://www.acme-multilingual.example/2026-native-reach-state-of-the-industry/",
+      "firma_autor": null,
+      "keywords": [],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/sitio-home.md"
+      ]
+    }
+  ],
+  "seo": {
+    "keyword_principal": "how to justify a multilingual content budget",
+    "keywords_secundarias": [
+      "multilingual marketing budget justification",
+      "content localization business case for finance",
+      "multilingual content investment vs. language coverage"
+    ],
+    "enlazado_interno": [
+      {
+        "desde": "blog-01",
+        "hacia": "/2026-native-reach-state-of-the-industry/",
+        "anchor": "2026 Native Reach State of the Industry report"
+      },
+      {
+        "desde": "blog-01",
+        "hacia": "/native-reach/",
+        "anchor": "Native Reach framework"
+      },
+      {
+        "desde": "li-01",
+        "hacia": "/2026-native-reach-state-of-the-industry/",
+        "anchor": "download the report"
+      }
+    ]
+  },
+  "control_calidad": {
+    "cifras_usadas": [
+      {
+        "cifra": "21 dias (Northvale, sitios en espanol y polaco) — blog-01 y news-01",
+        "fuente": "activos/sitio-home.md"
+      },
+      {
+        "cifra": "147% (mas conversiones a traves de contenido localizado) — blog-01 y news-01",
+        "fuente": "activos/sitio-home.md"
+      },
+      {
+        "cifra": "63% (aumento de conversiones en Brasil via SEO) — blog-01, news-01 y li-02",
+        "fuente": "activos/sitio-home.md"
+      },
+      {
+        "cifra": "44% (crecimiento anual compuesto de ingresos, Railvia, cuatro anos) — blog-01, news-01 y li-01",
+        "fuente": "activos/sitio-home.md"
+      }
+    ],
+    "datos_faltantes": [
+      "Contenido, hallazgos o estadisticas del report '2026 Native Reach State of the Industry'. activos/sitio-home.md solo registra su titulo y URL; ningun activo tiene su contenido real."
+    ],
+    "riesgos": [
+      "[ALTO] blog-01 usa 'we're live in fourteen markets'. contexto/marca.md prohibe explicitamente ese numero dentro de una pieza, incluso en hipotetico, porque los '14 idiomas' son la ilustracion del brief y no un dato de Acme. La misma pieza usa la forma correcta ('a dozen-plus languages') dos parrafos antes: es una inconsistencia interna, no una limitacion de la instruccion. Reescribir sin numero.",
+      "[ALTO] blog-01, news-01 y li-02 (cta) caracterizan que contiene o que prueba el report sin fuente: activos/ solo tiene titulo y URL. contexto/marca.md exige [DATO FALTANTE] en este caso y ninguna de las tres piezas lo usa.",
+      "[MEDIO-ALTO] blog-01 y news-01 usan '147% increase in conversions' sin cliente ni periodo. Esta literal en el activo (sin cliente tampoco alli) y pasa el validador, pero si un prospecto pide desagregarla no hay con que respaldarla.",
+      "[MEDIO] El bloque angulo_semanal perdio tildes y dieresis respecto del original de contexto/marca.md. No cambia el contenido, pero es el texto en espanol que firma un humano.",
+      "[BAJO] li-02 usa 'turns a content line item into a business case': eco estructural, no literal, del giro vedado 'turn X into a growth engine'. No usa vocabulario prohibido — verificado, cero coincidencias en las 5 piezas — pero el brief empujaba deliberadamente hacia esa frase.",
+      "[INFORMATIVO] Las 5 piezas cuelgan de InRegion por segunda semana consecutiva. Es valido: R6 prohibe repetir el angulo, no el pilar. Se senala para que quien firma no lo lea como repeticion no declarada.",
+      "[LIMPIO — resultado del experimento de esta corrida] R4 aguanto la prueba de estres. El brief empujaba directo a 'growth engine' / 'cost center' y ninguna de las 5 piezas las usa. La frase esta ademas en el propio sitio de la marca, lo que la hacia mas tentadora."
+    ],
+    "apto_para_firma": false
+  },
+  "firma": {
+    "requiere_firma_humana": true,
+    "firmante": null,
+    "fecha_firma": null
+  }
+}

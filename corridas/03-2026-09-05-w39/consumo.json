@@ -1,0 +1,30 @@
+{
+  "por_modelo": {
+    "claude-opus-5": {
+      "llamadas": 6,
+      "in": 12,
+      "cache_w": 23300,
+      "cache_r": 1858743,
+      "out": 10509,
+      "usd": 1.3377815,
+      "subagente": 0
+    },
+    "claude-sonnet-5": {
+      "llamadas": 40,
+      "in": 80,
+      "cache_w": 499313,
+      "cache_r": 2895004,
+      "out": 78985,
+      "usd": 2.6172933000000005,
+      "subagente": 40
+    }
+  },
+  "total": {
+    "llamadas": 46,
+    "in": 92,
+    "cache_w": 522613,
+    "cache_r": 4753747,
+    "out": 89494,
+    "usd": 3.9550748000000002
+  }
+}
