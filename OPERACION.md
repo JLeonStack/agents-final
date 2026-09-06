@@ -20,9 +20,15 @@ Todo lo que sigue está probado sobre este repositorio. Los comandos se copian y
 sistema no publica nada y no tiene con qué: es la restricción R3 y está en
 [`GOBIERNO.md`](GOBIERNO.md) §1.
 
-**Costo esperado de una corrida completa:** ≈ **USD 2,60**, medido, no estimado
-([`COSTOS.md`](COSTOS.md) §3). Una corrida tarda entre 30 y 40 minutos de reloj, de los cuales
-unos 10 son tuyos: la revisión L2 del paso 4 y el checklist del paso 7.
+**Costo esperado de una corrida completa:** ≈ **USD 3,12** — **2,62 medidos** (los cinco
+especialistas en Sonnet 5, corrida 03) **+ 0,50 proyectados** (el director, que en la corrida 03
+todavía corrió en Opus por USD 1,43 y en producción corre en Sonnet). No confundas los dos
+números: 2,62 es lo que sale la ola de especialistas, 3,12 es la corrida completa, y **la
+proyección anual se hace sobre 3,12** — 3,12 × 52 ≈ USD 162. Los precios de lista con los que
+se calcula están citados con fuente y fecha en [`COSTOS.md`](COSTOS.md) §2; el desglose por
+agente y la derivación del 0,50, en §3 y §6. Una corrida tarda entre 30 y 40
+minutos de reloj, de los cuales unos 10 son tuyos: la revisión L2 del paso 4 y el checklist del
+paso 7.
 
 ---
 
@@ -35,21 +41,32 @@ documentación afirma, y no consume un solo token:
 python3 herramientas/verificar-repo.py
 ```
 
-Diez controles: contratos sincronizados, frontmatter completo, R1–R8 coherente en los seis
+Trece controles: contratos sincronizados, frontmatter completo, R1–R8 coherente en los seis
 contratos, las tres corridas archivadas completas y reconstruibles, el `plan.md` de cada una
-regenerable byte a byte desde su JSON, la jaula de permisos cargada, y el schema exigiendo
-firma humana. **Sale con exit 1 si algo no cierra**, y dice qué.
+regenerable byte a byte desde su JSON, la jaula de permisos cargada y sincronizada, ningún dato
+que viva solo en una carpeta oculta, y el schema exigiendo firma humana. **Sale con exit 1 si
+algo no cierra**, y dice qué.
 
-Si `D1` falla, es que los contratos de `prompts/agentes/` no están registrados:
+Si falla `D1` o `D11`, es que `.claude/` quedó desincronizada de sus fuentes visibles:
 
 ```bash
 bash herramientas/sincronizar.sh
 ```
 
-`prompts/agentes/` es la fuente de verdad —la exige el enunciado— y `.claude/agents/` es la
-copia que Claude Code carga. La duplicación está declarada en
-[`DECISIONES.md`](DECISIONES.md) §7; `sincronizar.sh` y el control D1 son lo que evita que
+Las fuentes de verdad son visibles y `.claude/` es el espejo que carga Claude Code:
+[`prompts/agentes/`](prompts/agentes/) → `.claude/agents/` porque el enunciado exige que los
+contratos estén ahí, y [`jaula/settings.json`](jaula/settings.json) → `.claude/settings.json`
+porque una regla que solo existe en una carpeta oculta no la puede auditar un tercero
+([`DECISIONES.md`](DECISIONES.md) §7 y §16). Los controles D1 y D11 son lo que evita que
 diverjan en silencio.
+
+> **Si `sincronizar.sh` no puede escribir `.claude/settings.json`, es correcto:** la jaula se
+> deniega a sí misma desde adentro de una sesión de Claude Code. Copiala desde una terminal
+> normal, fuera de la sesión, y reabrí el proyecto para que la cargue:
+>
+> ```bash
+> cp jaula/settings.json .claude/settings.json
+> ```
 
 ---
 
@@ -148,7 +165,7 @@ python3 herramientas/costo.py --desde <inicio> --hasta <fin> --transcripts <dir>
 
 El script lo avisa en vez de inventar un número. **Una corrida sin consumo medido se declara
 como no medida; no se estima.** El precedente está en [`DECISIONES.md`](DECISIONES.md) §4: la
-primera medición de la corrida 01 daba USD 1,41 y la real era USD 5,97.
+primera medición de la corrida 01 daba USD 1,41 y la real era USD 6,10.
 
 ---
 

@@ -46,8 +46,17 @@ correrlas. Son dos capas, y una tercera que no es técnica:
 | Capa | Qué es | A quién caza | Estado |
 | --- | --- | --- | --- |
 | **1 · `tools:` del frontmatter** | Cada contrato declara sus herramientas. Los cinco existen en `.claude/agents/` **antes** de abrir la sesión, así que ahora sí se los puede invocar por nombre registrado | Los cinco especialistas | **Vigente.** El control D2 de `verificar-repo.py` verifica además que ninguno declare `Bash` |
-| **2 · `deny` de `.claude/settings.json`** | Deniega `Write` y `Edit` sobre `esquemas/`, `herramientas/`, `prompts/`, `activos/`, las corridas archivadas y el propio `.claude/` | **Todos**, director incluido | **Vigente y verificada en esta sesión** (ver abajo) |
+| **2 · `deny` de [`jaula/settings.json`](jaula/settings.json)** | Deniega `Write` y `Edit` sobre `esquemas/`, `herramientas/`, `prompts/`, `activos/`, las corridas archivadas, la propia `jaula/` y `.claude/settings.json` | **Todos**, director incluido | **Vigente y verificada en esta sesión** (ver abajo) |
 | 3 · La instrucción del contrato | *«si el validador falla, arreglá el JSON — no toques el validador ni el schema»* | Todos | Vigente desde v1. Ya no es la única barrera |
+
+**Dónde está el archivo, y por qué importa.** La fuente de verdad es
+[`jaula/settings.json`](jaula/settings.json), una ruta visible con su propio
+[README](jaula/README.md); `.claude/settings.json` es la copia que Claude Code carga, y la
+escribe `herramientas/sincronizar.sh`. La jaula vivía **solo** en la carpeta oculta, y un
+corrector externo que listó el repositorio sin archivos ocultos no la encontró: leyó un trabajo
+que afirmaba tener permisos vigentes y no podía verificarlo. **Una regla que un auditor no puede
+ver no es un control: es otra afirmación.** El episodio y la corrección están en
+`DECISIONES.md` §16, y el control **D11** compara las dos copias byte a byte.
 
 **Qué está verificado, textualmente.** Al escribir la jaula, la sesión que la escribió quedó
 adentro: el intento de crear `herramientas/verificar-repo.py` con la herramienta `Write` fue
@@ -89,7 +98,7 @@ cometió una vez.**
   explícitamente (`prompts/user_prompt.md`): *si el validador falla, arreglá el JSON — no
   toques el validador ni el schema*. Es la barrera contra el atajo más tentador de un agente
   con permiso de escritura: cuando la verificación molesta, aflojar la verificación. **Desde
-  la jaula de `.claude/settings.json`, esa instrucción tiene además una regla `deny` detrás**,
+  la jaula de [`jaula/settings.json`](jaula/settings.json), esa instrucción tiene además una regla `deny` detrás**,
   con el alcance y el agujero que la tabla de arriba declara.
 
 ### Confidencialidad — el riesgo propio de este caso
@@ -107,7 +116,7 @@ público**, y material público sobre una empresa identificable sigue siendo mat
 empresa identificable. Así que antes de publicar se redactaron todos los identificadores —
 nombre, dominio, categoría propia, productos, clientes, las dos personas que firman el blog,
 el competidor y las cifras publicadas — reemplazados por equivalentes ficticios de forma
-consistente en los 46 archivos del repo, con dominios en el TLD reservado `.example`.
+consistente en todos los archivos del repo, con dominios en el TLD reservado `.example`.
 
 Es exactamente el caso que este mismo documento anticipaba: *«si algo resulta imprescindible,
 se anonimiza **y se dice que se anonimizó**»*. La nota completa está al principio del README.

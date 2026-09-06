@@ -117,9 +117,9 @@ contra el control que ven.
 
 ---
 
-## 4 · El medidor de costo medía 4,2 veces menos de lo real
+## 4 · El medidor de costo medía 4,3 veces menos de lo real
 
-**Síntoma.** El primer conteo de la corrida 01 dio **USD 1,41**. El real era **USD 5,97**.
+**Síntoma.** El primer conteo de la corrida 01 dio **USD 1,41**. El real era **USD 6,10**.
 
 **Diagnóstico.** Dos errores en `herramientas/costo.py`, ninguno obvio:
 
@@ -136,7 +136,26 @@ contra el control que ven.
 y no matcheaba la tabla de precios, así que **el brazo más barato del banco de pruebas se
 contaba como costo cero.** Corregido con normalización de ids.
 
-**Por qué esta entrada importa más de lo que parece.** Los tres errores empujan en la misma
+**Un cuarto error, encontrado al final y de otra especie (T4).** Los tres anteriores eran bugs:
+el código no hacía lo que yo creía. Este no. El código hacía exactamente lo que estaba escrito
+—cobrar toda escritura de caché a 1,25× el precio de entrada— y estaba escrito así a propósito,
+con un cartel arriba que decía **«supuesto declarado»**. El problema es que la tarifa publicada
+tiene *dos* precios de escritura según el TTL (1,25× a 5 minutos, **2,00× a 1 hora**) y el
+transcript ya venía diciendo cuál fue cada una, en `usage.cache_creation`, dos campos más adentro
+del mismo objeto que el medidor ya estaba leyendo.
+
+Apareció recién cuando fui a citar la tarifa con fuente y fecha para `COSTOS.md` §2: leer la
+tabla de precios de verdad obligó a mirar si mi supuesto coincidía con ella. No coincidía. Efecto:
+la construcción pasó de USD 20,77 a **21,23** y la corrida de producción de 3,09 a **3,12** —entre
+2,1% y 2,3% por corrida, poco en plata y mucho en método.
+
+**La lección es sobre los supuestos, no sobre el caché.** Declarar un supuesto se siente como
+haber sido riguroso, y por eso este sobrevivió tres auditorías: estaba a la vista, rotulado, y
+nadie —yo incluido— fue a ver si era necesario. **Un supuesto que se puede medir con datos que
+ya tenés no es un supuesto: es una medición que no hiciste.** El rótulo, en ese caso, no protege:
+tapa.
+
+**Por qué esta entrada importa más de lo que parece.** Los cuatro errores empujan en la misma
 dirección: **hacer que el sistema parezca más barato de lo que es.** Un análisis económico
 construido sobre un medidor sin verificar habría dado una cifra optimista y confiable.
 
@@ -321,8 +340,10 @@ verdaderas pero **no verificables desde el repo**. Las importantes, y qué se hi
 | El README dice que la corrida 01 pasa el validador; **hoy falla** | Corregido en README y en `GOBIERNO.md`: pasa con el validador de entonces, falla con el actual, y se deja así a propósito |
 | `WebFetch` nunca corrió **dentro** de una corrida, solo al construir los activos | Corregido en README y en el inventario de permisos |
 | `GOBIERNO.md` afirma que la aprobación L2 está registrada en los tres `NOTAS.md`; estaba en uno | Se registró lo efectivamente verificado en las corridas 02 y 03 |
-| `2,62 × 52 = 161` — son 136; los 161 vienen de 3,09 | Corregido |
-| `USD 26,29` no reproduce y mezcla tres modelos | Reemplazado por la suma de las cuatro ventanas medidas (**20,77**), archivadas en `corridas/*/consumo.json` |
+| `2,62 × 52 = 161` — son 136; la proyección va sobre la corrida completa, no sobre los especialistas solos | Corregido: 3,12 × 52 = 162 |
+| `USD 26,29` no reproduce y mezcla tres modelos | Reemplazado por la suma de las cuatro ventanas medidas (**21,23**), archivadas en `corridas/*/consumo.json` |
+| La escritura de caché se cobraba toda a 1,25×, declarado como «supuesto». Es la tarifa del TTL de 5 min; el de 1 h vale 2,00×, y **el transcript trae cuál fue cada una** | Corregido (T4): `costo.py` lee `usage.cache_creation`. Construir 20,77 → **21,23**; corrida de producción 3,09 → **3,12**. Los USD 2,62 de los especialistas no se movieron |
+| Los precios de la API estaban escritos sin fuente ni fecha | `COSTOS.md` §2 los cita contra la tabla de precios de Anthropic consultada el 2026-09-06, con las cinco columnas y un número reconstruido a mano |
 | `costo.py` tiene la ruta de transcripts hardcodeada: ningún tercero puede verificar | Se agregó `--transcripts` y se archivó el consumo dentro de cada corrida |
 | `marca.md` tiene 453 líneas, no 423 | Corregido en los dos lugares |
 | El paso «escribir `calendario.csv`» está en el pipeline y **nunca se ejecutó** | Marcado como definido y no ejecutado |
@@ -422,7 +443,8 @@ error que esta entrada documenta.
    jaula está cargada y bloqueó a su propio autor, pero **todavía no fue ejercitada en una
    corrida completa**. Alcance y agujero en `GOBIERNO.md` §1.
 2. ~~**Un verificador de documentación contra repositorio.**~~ **Hecho en §15**:
-   `herramientas/verificar-repo.py`, diez controles, exit 1 si el repo no es lo que dice ser.
+   `herramientas/verificar-repo.py`, diez controles —trece desde §16—, exit 1 si el repo no es
+   lo que dice ser.
 3. **Correr el banco de modelos sobre el `editor-qa`.** Hoy su modelo es extrapolación desde
    la tarea del redactor, y el criterio que Haiku falló —ver los propios límites— es
    precisamente el suyo.
@@ -544,7 +566,7 @@ Repasé el repositorio como si lo acabara de clonar. Lo que encontré:
    parar en la ola 1, medir la ventana, cerrar— estaban repartidos entre cuatro documentos y
    ninguno los ordenaba.
 2. **No había forma barata de saber si el repo estaba sano.** La única verificación era
-   `validar.py`, que necesita una salida — o sea, una corrida ya hecha y USD 2,60 gastados.
+   `validar.py`, que necesita una salida — o sea, una corrida ya hecha y USD 3,12 gastados.
 3. **El medidor de costo solo medía en mi máquina.** `costo.py` tenía escrito a mano el nombre
    del directorio de transcripts de *mi* laptop. En otra máquina imprimía «sin datos en ese
    rango»: **no fallaba, mentía en silencio** — el mismo modo de falla que la entrada §4.
@@ -558,7 +580,7 @@ que ya sabía las cinco cosas que no estaban escritas.
 | Qué | Para qué |
 | --- | --- |
 | `OPERACION.md` | El runbook: requisitos, ocho pasos, los prompts exactos que se pegan, y una tabla de «cuando algo falla» |
-| `herramientas/verificar-repo.py` | El **pendiente #2**: diez controles del repo contra su propia documentación. Exit 1 si no cierra. No gasta un token |
+| `herramientas/verificar-repo.py` | El **pendiente #2**: diez controles del repo contra su propia documentación —§16 agregó tres más—. Exit 1 si no cierra. No gasta un token |
 | `herramientas/nueva-corrida.sh` | Arma el directorio, la plantilla de `entrada.md` y la marca `.inicio` que define la ventana de medición |
 | `herramientas/cerrar-corrida.sh` | Cierra, valida, regenera el markdown, mide el consumo real y **deja `FIRMA.md` y `NOTAS.md` en blanco a propósito** |
 | `.claude/settings.json` | El **pendiente #1**: la jaula de permisos, por fin como configuración |
@@ -638,3 +660,99 @@ anteriores es que ahora hay algo que revisa los cinco —`verificar-repo.py`, co
 control falló apenas se escribió, porque `README.md` ya enlazaba a un `OPERACION.md` que
 todavía no existía. **La primera cosa que encontró el verificador de documentación fue una
 inconsistencia de documentación introducida diez minutos antes.** Para eso estaba.
+
+---
+
+## 16 · La jaula existía y el auditor no podía verla
+
+**Tercera evaluación externa, y la primera hecha por un corrector automático que no me conocía
+ni podía preguntarme nada.** Puntuó *Formato y reproducibilidad* y *Gobierno y riesgo* en 75%,
+y las dos veces por el mismo motivo, escrito casi con las mismas palabras:
+
+> *afirmado: «los cinco agentes registrados y la jaula de permisos de `settings.json`»
+> (README.md) — verificado: `.claude/` y `.claude/settings.json` ausentes en el repositorio
+> listado*
+
+**Y no había nada falso en lo afirmado.** Los seis archivos estaban versionados —`git ls-files`
+los lista— y el enlace `[.claude/](.claude/)` del README resuelve perfectamente en GitHub. La
+jaula existía, estaba cargada, y §15 documenta las tres veces que bloqueó a su propio autor.
+
+Lo que pasó es más incómodo que un error: **la herramienta con la que me auditaron lista
+archivos y omite los ocultos.** De 76 archivos versionados, 14 empiezan con punto en algún
+tramo de su ruta, y entre ellos estaban exactamente los que sostienen la afirmación más fuerte
+del trabajo. El corrector leyó un repositorio que decía tener una jaula de permisos vigente y
+no encontró la jaula. Hizo lo correcto: la trató como no verificada.
+
+### La lección, que es nueva y no lo parece
+
+Este documento viene repitiendo desde §11 la misma frase en distintos planos: *escribir que un
+control existe no es tenerlo*. §15 le agregó el estándar de prueba —chocar contra la jaula, no
+describirla—. Faltaba un plano más, y es el de esta entrada:
+
+> **Un control que un tercero no puede encontrar no se distingue de un control que no existe.**
+> El estándar no es «el archivo está en el repositorio». Es «alguien que no soy yo, con las
+> herramientas que efectivamente usa, lo puede abrir y leer».
+
+Es la misma familia que §4 —el medidor de costo que no fallaba, *mentía en silencio*— y que
+§14 —la regla que estaba en cuatro lugares y faltaba en el quinto—. La forma se repite: **el
+sistema no avisa cuando la evidencia se vuelve invisible**, porque desde adentro se ve toda.
+
+### Qué se cambió
+
+| Qué | Por qué |
+| --- | --- |
+| `jaula/settings.json` + [`jaula/README.md`](jaula/README.md) | La jaula pasa a vivir en una **ruta visible**, con su propia explicación al lado. `.claude/settings.json` queda como copia que carga el runtime, igual que `.claude/agents/` ya era copia de `prompts/agentes/` desde §7 |
+| `sincronizar.sh` sincroniza también la jaula | Una sola costura, un solo comando. Y avisa que un cambio de permisos exige reabrir la sesión, porque Claude Code la carga al abrir |
+| `deny` sobre `jaula/**` | La jaula nueva se protege a sí misma **por los dos lados**. Sin esta regla, mover el original a una ruta escribible habría abierto el camino de escalada obvio: editar `jaula/settings.json`, correr `sincronizar.sh`, ampliarse los permisos |
+| Control **D11** | `jaula/settings.json` ≡ `.claude/settings.json`, byte a byte, y la lista `deny` contiene las reglas que protegen la verificación |
+| Control **D12** | **Ningún dato del repositorio vive solo en una ruta oculta.** Recorre los archivos versionados bajo rutas con punto y exige que el contenido de cada uno sea recuperable desde un archivo visible |
+| Control **D13** | Cada corrida real declara sus datos de origen y esos archivos existen |
+| [`corridas/PROCEDENCIA.md`](corridas/PROCEDENCIA.md) | Entrada, salida, fecha y **dato de origen** de las tres corridas en una tabla, con la receta de reconstrucción. Lo que `activos/FUENTES.md` hace por el material, esto lo hace por las corridas |
+
+**D12 es el control que importa**, porque es el único que convierte esta entrada en algo
+mecánico en vez de en una promesa. Los `.inicio` y `.fin` de cada corrida siguen siendo
+ocultos —son andamiaje del script, no salida del modelo, y reescribir una corrida archivada
+para maquillarlos habría sido peor—; D12 no los borra: exige que su contenido esté también en
+el `metadata.json` visible, que es de donde cualquiera puede leer la ventana de medición.
+
+### El segundo hallazgo: el resumen redondeaba para el lado que me convenía
+
+El mismo corrector marcó una segunda inflación, más chica y más fea:
+
+> *afirmado: «Operar: USD 2,62 por corrida» (README.md) — verificado: la corrida completa de
+> producción se proyecta en «≈ USD 3,09» (COSTOS.md)*
+
+`COSTOS.md` §6 estaba bien: separaba los **medidos** de los cinco especialistas de los
+**proyectados** del director. El README tomó de esa página el número medido —el más chico— y a
+continuación lo anualizó con el número total: *«USD 2,62 por corrida ≈ USD 161 al año»*, donde
+161 era 3,09 × 52 y 2,62 × 52 habría dado 136. **Las dos cifras eran ciertas y la frase que las
+unía no.**
+
+Nadie mintió y el efecto fue el de una mentira. Es literalmente el modo de falla de §4 —los
+bugs del medidor empujaban todos en la dirección de hacer parecer el sistema más barato—
+trasladado del código a la prosa del resumen. La corrección: el README, `OPERACION.md` y
+`COSTOS.md` dicen ahora el mismo número para la corrida completa (**3,12**, después de T4),
+dicen cuánto de eso está medido y cuánto proyectado, y **hacen la multiplicación a la vista**
+—3,12 × 52 = 162,08— para que la proyección se pueda rehacer sin confiar en nadie.
+
+**El arreglo trajo el hallazgo siguiente.** Al ir a citar la tarifa real con fuente y fecha para
+poder escribir esa cuenta, apareció T4: la escritura de caché no tiene un precio sino dos según
+el TTL, el documento cobraba todo al más barato, y **el transcript traía el dato para no tener
+que suponerlo**. Un supuesto declarado había sobrevivido tres auditorías justamente porque estaba
+declarado. Está en `COSTOS.md` §1.
+
+### Un detalle de esta sesión que vale escribir
+
+La jaula volvió a bloquear a quien la mantenía. `sincronizar.sh` y `verificar-repo.py` viven en
+`herramientas/`, que está denegado, así que el agente que escribió esta entrada **no pudo
+escribirlos**: los dejó preparados y se aplicaron desde una terminal fuera de la sesión de
+Claude Code. Cuatro colisiones ya, y ninguna es una molestia: es la única forma que tiene este
+repositorio de demostrar que la regla es configuración y no un párrafo.
+
+### La lección
+
+**Publicar no es depositar los archivos: es dejarlos donde el que audita los va a buscar.** La
+diferencia entre un repositorio que tiene la evidencia y uno donde la evidencia se puede
+encontrar no se ve nunca desde adentro —el autor sabe dónde está todo— y es la única que le
+importa a quien lo recibe. Tres evaluadores externos encontraron tres versiones del mismo
+error: escribir el control (§11), no chocar contra el control (§15), esconder el control (§16).

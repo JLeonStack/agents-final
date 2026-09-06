@@ -49,10 +49,13 @@ token y responde si el repositorio está sano:
 python3 herramientas/verificar-repo.py
 ```
 
-Diez controles del repositorio **contra su propia documentación** — contratos sincronizados,
+Trece controles del repositorio **contra su propia documentación** — contratos sincronizados,
 R1–R8 coherente en los seis, las tres corridas completas y reconstruibles byte a byte, la jaula
-de permisos cargada. Exit 1 si algo no cierra, y dice qué. Una corrida completa cuesta ≈ USD
-2,60 y tarda unos 35 minutos, de los cuales 10 son de la persona que revisa y firma.
+de permisos cargada y sincronizada, cero enlaces rotos y **ningún dato que viva solo en una
+carpeta oculta**. Exit 1 si algo no cierra, y dice qué. Una corrida completa
+cuesta **≈ USD 3,12** —2,62 medidos, 0,50 proyectados; el desglose en
+[`COSTOS.md`](COSTOS.md) §6— y tarda unos 35 minutos, de los cuales 10 son de la persona que
+revisa y firma.
 
 ---
 
@@ -184,9 +187,9 @@ compartido, no por conversación. Ese detalle explica la mitad de las fallas del
 
 | # | Semana | Contrato | Modelo | Validador | Firma | Costo |
 |---|---|---|---|:---:|:---:|---:|
-| [01](corridas/01-2026-09-05-w37/) | W37 · descubribilidad en respuestas de IA | v1 | Opus 5 | ✓ con el de entonces · **✗ con el actual** | **no** | 5,97 |
-| [02](corridas/02-2026-09-05-w38/) | W38 · criterio de asignación por mercado | **v2** | Opus 5 | ✓ exit 0 | **no** | 7,54 |
-| [03](corridas/03-2026-09-05-w39/) | W39 · cómo se argumenta la inversión | **v3** | **Sonnet 5** | ✓ exit 0 | **no** | 3,96 |
+| [01](corridas/01-2026-09-05-w37/) | W37 · descubribilidad en respuestas de IA | v1 | Opus 5 | ✓ con el de entonces · **✗ con el actual** | **no** | 6,10 |
+| [02](corridas/02-2026-09-05-w38/) | W38 · criterio de asignación por mercado | **v2** | Opus 5 | ✓ exit 0 | **no** | 7,70 |
+| [03](corridas/03-2026-09-05-w39/) | W39 · cómo se argumenta la inversión | **v3** | **Sonnet 5** | ✓ exit 0 | **no** | 4,04 |
 
 Cada corrida tiene su `entrada.md` con el brief exacto, la salida **sin retocar**, `NOTAS.md`
 con el contraste contra las hipótesis anotadas *antes* de correr, `FIRMA.md` y el consumo
@@ -204,10 +207,10 @@ existen), **C2** antialucinación (toda cifra con % aparece literal en `activos/
 integridad referencial (los enlaces internos apuntan a piezas que existen).
 
 ```bash
-python3 herramientas/verificar-repo.py                                   # 10 controles del repo
+python3 herramientas/verificar-repo.py                                   # 13 controles del repo
 python3 herramientas/render.py  corridas/<id>/salida/plan_semanal.json   # genera plan.md del JSON
 python3 herramientas/costo.py --desde <inicio> --hasta <fin>             # tokens y costo reales
-bash herramientas/sincronizar.sh                                         # prompts/agentes/ → .claude/agents/
+bash herramientas/sincronizar.sh                                         # prompts/agentes/ y jaula/ → .claude/
 bash herramientas/nueva-corrida.sh 2026-W40 <desde> <hasta>              # abre una corrida
 bash herramientas/cerrar-corrida.sh corridas/<id>                        # valida, mide y cierra
 ```
@@ -231,10 +234,18 @@ inválida por construcción**, no por convención.
 
 ### La economía cierra y está medida
 
-**Construir: USD 20,77** (suma de las cuatro ventanas de corrida, archivadas en cada
-`consumo.json`). **Operar: USD 2,62 por corrida** medidos con los cinco especialistas en
-Sonnet 5 ≈ **USD 161 al año** para una marca. El banco de tres modelos y las tres trampas de
-medición que hubo que corregir están en [`COSTOS.md`](COSTOS.md).
+**Construir: USD 21,23** (suma de las cuatro ventanas de corrida, archivadas en cada
+`consumo.json`). **Operar: ≈ USD 3,12 por corrida** en configuración de producción, y **3,12 ×
+52 = 162,08 ≈ USD 162 al año** para una marca. La proyección se hace sobre la corrida completa,
+no sobre los especialistas solos.
+
+Ese 3,12 **no es todo medido, y la diferencia importa**: 2,62 son la medición real de los cinco
+especialistas en Sonnet 5, y 0,50 es el director *proyectado* a Sonnet desde su costo real en
+Opus (USD 1,43) con el ratio Opus/Sonnet medido en el banco sobre la misma tarea (2,853). Todavía
+no hubo una corrida con el director en Sonnet. Los precios están citados con fuente y fecha en
+[`COSTOS.md`](COSTOS.md) §2 —la tabla de precios de la API de Anthropic consultada el
+2026-09-06— junto con el banco de tres modelos y las **cuatro** trampas de medición que hubo que
+corregir, la última de las cuales era un supuesto de tarifa que resultó ser medible.
 
 ### La prueba de estrés que sí pasó
 
@@ -294,14 +305,17 @@ que encontró el `editor-qa`:
   contexto de marca prohíbe explícitamente. **La misma pieza contiene la forma correcta y la
   prohibida.**
 
-### El medidor de costo medía 4,2 veces menos de lo real
+### El medidor de costo medía 4,3 veces menos de lo real
 
-Primer conteo de la corrida 01: USD 1,41. Real: USD 5,97. Tres bugs, todos empujando en la
+Primer conteo de la corrida 01: USD 1,41. Real: USD 6,10. Tres bugs, todos empujando en la
 misma dirección —hacer parecer el sistema más barato—: no deduplicar los bloques de streaming,
 quedarse con el bloque de salida incompleto en vez del mayor, y no escanear los transcripts de
 los subagentes, que son el 89% de las llamadas. Un cuarto: el id de Haiku llega con sufijo de
 fecha y no matcheaba la tabla de precios, así que **el brazo más barato del banco se contaba
-como costo cero**.
+como costo cero**. Y un quinto, encontrado al citar la tarifa real para este documento: la
+escritura de caché se cobraba toda a 1,25× el precio de entrada, pero esa es la tarifa del TTL
+de 5 minutos y el de 1 hora vale 2,00×. Estaba declarado como supuesto —y el transcript traía
+el desglose para no tener que suponerlo. Ver [`COSTOS.md`](COSTOS.md) §1, T4.
 
 ### Lo que decidí NO arreglar, y por qué
 
@@ -376,11 +390,13 @@ forma; el criterio sigue siendo del que firma. **La responsabilidad no se delega
 | [`prompts/agentes/`](prompts/agentes/) | Los cinco contratos de especialista |
 | [`prompts/variantes/`](prompts/variantes/) | Contratos v1 y v2, reconstruidos — la cabecera lo declara |
 | [`corridas/`](corridas/) | Las tres corridas reales + los dos pilotos + el banco de modelos |
-| [`DECISIONES.md`](DECISIONES.md) | La historia de la construcción: 15 entradas (§0–§14) y lo que queda pendiente |
+| [`corridas/PROCEDENCIA.md`](corridas/PROCEDENCIA.md) | **Cómo reconstruir cada corrida:** entrada, salida, fecha y el dato de origen que leyó, en una tabla |
+| [`DECISIONES.md`](DECISIONES.md) | La historia de la construcción: 17 entradas (§0–§16) y lo que queda pendiente |
 | [`COSTOS.md`](COSTOS.md) | Tokens medidos, banco de 3 modelos, proyección semanal y anual |
 | [`GOBIERNO.md`](GOBIERNO.md) | Permisos, 8 modos de falla, checklist de firma, quién firma |
 | [`activos/`](activos/) | Material público real de la marca, con procedencia en [`FUENTES.md`](activos/FUENTES.md) |
 | [`contexto/marca.md`](contexto/marca.md) | El documento compartido que mantiene el estratega y leen los otros cuatro |
 | [`esquemas/`](esquemas/plan_semanal.schema.json) | El contrato de datos de la salida |
 | [`herramientas/`](herramientas/) | `verificar-repo.py` · `validar.py` · `render.py` · `costo.py` · `nueva-corrida.sh` · `cerrar-corrida.sh` · `sincronizar.sh` |
-| [`.claude/`](.claude/) | Lo que hace que el repo corra como dice: los cinco agentes registrados y la jaula de permisos de `settings.json` |
+| [`jaula/settings.json`](jaula/settings.json) | **La jaula de permisos vigente**, con su [README](jaula/README.md): qué deniega, a quién, y hasta dónde llega |
+| `.claude/` | Carpeta oculta, **espejo y no original**: `agents/` es copia de [`prompts/agentes/`](prompts/agentes/) y `settings.json` es copia de [`jaula/settings.json`](jaula/settings.json). La escribe `sincronizar.sh`; es donde Claude Code lee. Nada vive solo ahí — lo verifica el control D12 |
