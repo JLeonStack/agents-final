@@ -1,0 +1,50 @@
+{
+  "$comentario": [
+    "Jaula de permisos del sistema. Es configuracion vigente, no documentacion:",
+    "Claude Code la carga al abrir este repositorio y la aplica a TODOS los agentes,",
+    "incluido el director. Complementa al `tools:` del frontmatter de cada contrato,",
+    "que solo caza a los especialistas cuando se los invoca por su nombre registrado.",
+    "Lo que estas reglas hacen mecanico es R7 y la ultima linea de user_prompt.md:",
+    "«si el validador falla, arregla el JSON — no toques el validador ni el schema».",
+    "Alcance real y sus limites: GOBIERNO.md §1.",
+    "",
+    "DONDE VIVE ESTE ARCHIVO. La fuente de verdad es `jaula/settings.json`, en una ruta",
+    "visible; `.claude/settings.json` es la copia que Claude Code carga, y la escribe",
+    "`herramientas/sincronizar.sh`. Es la misma costura declarada que prompts/agentes/ ↔",
+    ".claude/agents/ (DECISIONES.md §7), y por el mismo motivo que la §16: una regla que",
+    "solo existe adentro de una carpeta oculta no la puede verificar un tercero. El control",
+    "D11 de verificar-repo.py compara las dos copias byte a byte.",
+    "",
+    "Las corridas archivadas (00-03 y el banco) se deniegan una por una y no con corridas/0*: una corrida nueva tiene que poder escribirse. Una corrida se archiva como salio.",
+    "Se protege .claude/settings.json y jaula/ y no .claude/ entero: sincronizar.sh tiene que poder escribir en .claude/agents/. Lo que un agente no puede hacer es ampliar sus permisos, ni por la copia ni por el original."
+  ],
+  "permissions": {
+    "deny": [
+      "Write(esquemas/**)",
+      "Edit(esquemas/**)",
+      "Write(herramientas/**)",
+      "Edit(herramientas/**)",
+      "Write(prompts/**)",
+      "Edit(prompts/**)",
+      "Write(activos/**)",
+      "Edit(activos/**)",
+      "Write(corridas/00-*/**)",
+      "Edit(corridas/00-*/**)",
+      "Write(corridas/01-*/**)",
+      "Edit(corridas/01-*/**)",
+      "Write(corridas/02-*/**)",
+      "Edit(corridas/02-*/**)",
+      "Write(corridas/03-*/**)",
+      "Edit(corridas/03-*/**)",
+      "Write(corridas/banco-modelos/**)",
+      "Edit(corridas/banco-modelos/**)",
+      "Write(jaula/**)",
+      "Edit(jaula/**)",
+      "Write(.claude/settings.json)",
+      "Edit(.claude/settings.json)"
+    ],
+    "ask": [
+      "Bash(git push:*)"
+    ]
+  }
+}
