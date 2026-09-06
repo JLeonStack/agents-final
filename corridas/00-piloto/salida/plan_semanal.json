@@ -1,0 +1,175 @@
+{
+  "semana": "2026-W37",
+  "rango": "2026-09-07 / 2026-09-13",
+  "generado_utc": "2026-09-05T21:26:06Z",
+  "modelo": "claude-opus-5",
+  "angulo_semanal": {
+    "titular": "La brecha de descubrimiento: invisible en IA fuera del mercado principal",
+    "tesis": "Una marca puede estar perfectamente traducida y aun asi no aparecer en las respuestas generadas por IA de su segundo mercado. Eso no es un problema de traduccion: es un problema de marketing, y se resuelve InRegion. El angulo separa a Acme de los proveedores que parten de la traduccion y suben hacia el marketing, y engancha con el activo mas fresco de la marca: el partnership con Searchline sobre AI search intelligence, publicado el 3 de septiembre de 2026.",
+    "pilar_native-reach": "InRegion",
+    "publico": "CMOs y responsables de marketing global en empresas enterprise que ya publican en varios idiomas y no saben si aparecen en las respuestas de IA de cada mercado.",
+    "cta": "Free Global Visibility Audit — acme-multilingual.example/global-visibility-audit/"
+  },
+  "piezas": [
+    {
+      "id": "blog-invisible-en-respuestas-ia",
+      "canal": "blog",
+      "titulo": "Why Your Brand Is Invisible in AI Answers Outside Your Home Market",
+      "cuerpo": "**Autor sugerido:** D. Reyes (firma habitual de SEO y estrategia)\n**Extension objetivo:** 550-650 palabras\n\n---\n\nMost global marketing teams can tell you how their content ranks in their home market. Far fewer can tell you whether an AI assistant answering a question in German, Portuguese or Japanese ever mentions them at all.\n\nThat gap is new. And it is not a translation problem.\n\n## A page can be flawless and still never be retrieved\n\nGenerative answer engines do not rank pages; they assemble an answer from the sources they judge most credible for the question **as it was actually asked** — in the local language, with local phrasing, against local competitors.\n\nA page translated word for word from an English original inherits the English question it was written to answer. If nobody in that market phrases the question that way, the page is simultaneously correct and invisible. Linguistic accuracy was never the bottleneck.\n\nThis is the distinction at the center of Native Reach: content has to perform InSpeech, InContext and InRegion. Translation gets you the first one. Being retrieved in an AI answer requires the third.\n\n## What \"InRegion\" means once the answer is generated\n\nInRegion means campaigns \"should match local demand, local rivals, and local buyer needs.\" When an answer is assembled rather than ranked, every one of those three becomes load-bearing:\n\n- **Local competitors.** Your German page is not competing with your English page. It competes with the German-language sources the model already treats as authoritative on that question.\n- **Local phrasing.** The entity names, the comparisons and the objections that appear in a real German query are frequently not the translated forms of the English ones.\n- **Local intent.** The same product answers a different question in a different market. A translated page answers the original market's question in a new language.\n\n## The upside is not hypothetical\n\nAcme's own published results point in the same direction: an 63% increase in conversions in Brazil through SEO, and 147% more conversions through localized content. Those numbers came from treating a market as a market — not as a language pair.\n\n## Where to start this quarter\n\n1. Pick your second-largest market by revenue, not by traffic.\n2. Write down the ten questions a buyer there actually asks — in their words, not translated from yours.\n3. Ask an AI assistant those ten questions in that language. Count how many times you appear.\n\nStep three usually ends the debate.\n\n## Related reading\n\nLinks out to \"Global SEO in 2026: What Changed\" and \"How Content Strategy Shapes International SEO Performance\".\n\n[DATO FALTANTE: el post del partnership con Searchline (3 sep 2026) se menciona como contexto,\npero activos/ solo tiene el titular y una linea. No citar mecanica de la integracion sin leer\nel post completo.]",
+      "cta": "Run the three-question check on your second-largest market, then request the Free Global Visibility Audit.",
+      "keywords": [
+        "multilingual AI search visibility",
+        "AI discoverability",
+        "international SEO",
+        "Native Reach",
+        "AI answer engines"
+      ],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/sitio-home.md",
+        "activos/blog-indice.md"
+      ]
+    },
+    {
+      "id": "blog-auditoria-cuatro-preguntas",
+      "canal": "blog",
+      "titulo": "The Discoverability Audit: Four Questions for Every Market You Publish In",
+      "cuerpo": "**Autor sugerido:** A. Moreau (firma habitual de localizacion y cultura)\n**Extension objetivo:** 400-500 palabras. Formato: articulo corto, cuatro preguntas, una por seccion.\n\n---\n\nBefore you commission another round of translated pages, it is worth checking whether the pages you already have are doing the job. These are the four questions we use.\n\n## 1. In this market, what question is the buyer actually asking?\n\nNot the translation of your home-market question. The question as it is typed or spoken locally. If your page answers a question nobody asks in that language, no amount of linguistic polish will surface it.\n\n## 2. Who currently owns the answer here?\n\nEvery market has an incumbent set of sources that AI assistants and search engines already trust on your topic. In most cases it is not your global competitor — it is a local publication, a regional integrator, or a competitor that does not exist in your home market at all.\n\n## 3. Does the page respect local context, or just local grammar?\n\nInContext means messaging \"should respect values, humor, and context.\" A page can be grammatically native and culturally foreign: the wrong proof points, the wrong reference customers, the wrong level of directness. Readers notice immediately, and so does anything trained on what readers engage with.\n\n## 4. Can you measure whether you appear?\n\nThis is where most teams stop, because the measurement is genuinely harder than a rank report. AI-generated answers are changing how visibility works, and the old dashboards do not capture it.\n\n## If you want the short version\n\nWe run this as a Free Global Visibility Audit across your markets. It answers question four first, because that is the one that tells you whether the other three are worth your quarter.\n\n[DATO FALTANTE: alcance real del Free Global Visibility Audit — cuantos mercados cubre,\nque entrega, en cuanto tiempo. No esta publicado en los activos disponibles. Confirmar con\nproducto antes de publicar, o suavizar la descripcion.]",
+      "cta": "Request the Free Global Visibility Audit for your top three markets.",
+      "keywords": [
+        "global visibility audit",
+        "multilingual content strategy",
+        "InContext",
+        "localization strategy",
+        "AI visibility measurement"
+      ],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/blog-indice.md",
+        "activos/sitio-home.md"
+      ]
+    },
+    {
+      "id": "linkedin-competencia-local",
+      "canal": "linkedin",
+      "titulo": "Your German site is not competing with your English site",
+      "cuerpo": "**Publicar:** lunes 2026-09-07, manana (siembra el post del martes)\n**Firma:** D. Reyes\n\n---\n\nYour German site is not competing with your English site.\n\nIt is competing with the German-language sources an AI assistant already trusts on that question.\n\nThat is a strange sentence to write, but it is where global marketing now sits. Answer engines do not rank your page against your other pages. They assemble an answer from whatever they judge most credible for the question as it was actually asked — locally phrased, against local incumbents.\n\nWhich means a perfectly translated page can be perfectly invisible. It inherited the question it was written to answer, and that question was in English.\n\nWe keep coming back to the same three-part test: does the content perform InSpeech, InContext, and InRegion? Translation solves the first. Retrieval in an AI answer is decided by the third.\n\nFull argument goes live tomorrow.\n\nWhat is the second market where you genuinely do not know whether you show up?",
+      "cta": "Pregunta abierta al cierre + enlace al post del martes cuando este publicado.",
+      "keywords": [
+        "AI search",
+        "global marketing",
+        "InRegion",
+        "multilingual content"
+      ],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/blog-indice.md"
+      ]
+    },
+    {
+      "id": "x-hilo-traducido-pero-invisible",
+      "canal": "x",
+      "titulo": "Hilo: traducido a la perfeccion y aun asi invisible",
+      "cuerpo": "**Publicar:** miercoles 2026-09-09\n**Formato:** hilo de 6 tuits. Un tuit por linea numerada.\n\n---\n\n1/ A page can be translated perfectly and still be invisible.\n\nNot a translation problem. A market problem.\n\n2/ Answer engines do not rank your pages against each other. They assemble an answer from whatever sources they trust for the question as it was actually asked — in that language, in that market.\n\n3/ A word-for-word translation inherits the question it was written to answer.\n\nIf nobody in that market asks it that way, the page is correct and unfindable at the same time.\n\n4/ Your German page competes with German-language incumbents. Often companies that do not exist in your home market at all.\n\n5/ Three-question test for your #2 market:\n- What does a buyer there actually ask, in their words?\n- Who owns that answer today?\n- Ask an assistant. Do you appear?\n\n6/ Question three usually settles the argument.\n\nLonger version on the blog.",
+      "cta": "Cierra con enlace al post del blog del martes.",
+      "keywords": [
+        "AI search",
+        "international SEO",
+        "multilingual content"
+      ],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/sitio-home.md"
+      ]
+    },
+    {
+      "id": "linkedin-gramatica-vs-contexto",
+      "canal": "linkedin",
+      "titulo": "Grammatically native, culturally foreign",
+      "cuerpo": "**Publicar:** jueves 2026-09-10, manana (acompana el segundo post)\n**Firma:** A. Moreau\n\n---\n\n\"Grammatically native, culturally foreign.\"\n\nThat is the failure mode I see most often, and it almost never shows up in a QA score.\n\nThe translation is clean. The tone is right. And then the page cites a reference customer nobody in that market has heard of, opens with a level of directness that reads as rude locally, and leans on a proof point that answers an objection buyers there do not have.\n\nNothing is wrong with the language. Everything is wrong with the context.\n\nInContext means messaging should respect values, humor and context. It is the pillar that is hardest to audit, because there is no error to catch — only a mismatch to notice.\n\nFour questions we ask before commissioning another round of pages:\n\n1. What is the buyer here actually asking?\n2. Who owns that answer today in this market?\n3. Does the page respect local context, or only local grammar?\n4. Can we measure whether we appear at all?\n\nMost teams can answer one and three. Two and four are where the quarter gets decided.\n\nWritten the long version up on the blog today.",
+      "cta": "Enlace al segundo post del blog + invitacion a la auditoria.",
+      "keywords": [
+        "InContext",
+        "cultural fluency",
+        "localization",
+        "global content"
+      ],
+      "fuentes": [
+        "activos/sitio-native-reach.md",
+        "activos/blog-indice.md"
+      ]
+    }
+  ],
+  "seo": {
+    "keyword_principal": "multilingual AI search visibility",
+    "keywords_secundarias": [
+      "AI discoverability",
+      "international SEO",
+      "Native Reach",
+      "global content strategy",
+      "AI answer engines",
+      "multilingual content strategy"
+    ],
+    "enlazado_interno": [
+      {
+        "desde": "blog-invisible-en-respuestas-ia",
+        "hacia": "https://www.acme-multilingual.example/native-reach/",
+        "anchor": "Native Reach"
+      },
+      {
+        "desde": "blog-invisible-en-respuestas-ia",
+        "hacia": "https://www.acme-multilingual.example/blog/ (Global SEO in 2026: What Changed)",
+        "anchor": "the new rules of global SEO"
+      },
+      {
+        "desde": "blog-invisible-en-respuestas-ia",
+        "hacia": "https://www.acme-multilingual.example/blog/ (How Content Strategy Shapes International SEO Performance)",
+        "anchor": "content strategy and international SEO"
+      },
+      {
+        "desde": "blog-auditoria-cuatro-preguntas",
+        "hacia": "https://www.acme-multilingual.example/global-visibility-audit/",
+        "anchor": "Free Global Visibility Audit"
+      },
+      {
+        "desde": "blog-auditoria-cuatro-preguntas",
+        "hacia": "https://www.acme-multilingual.example/blog/ (Why Cultural Fluency Is the Hardest Part of Global Marketing)",
+        "anchor": "why cultural fluency matters most"
+      }
+    ]
+  },
+  "control_calidad": {
+    "cifras_usadas": [
+      {
+        "cifra": "63% — aumento de conversiones en Brasil via SEO (blog-invisible-en-respuestas-ia)",
+        "fuente": "activos/sitio-home.md"
+      },
+      {
+        "cifra": "147% — mas conversiones a traves de contenido localizado (blog-invisible-en-respuestas-ia)",
+        "fuente": "activos/sitio-home.md"
+      }
+    ],
+    "datos_faltantes": [
+      "Alcance real del Free Global Visibility Audit (mercados cubiertos, entregable, plazo): no esta en activos/. Afecta el CTA de las dos piezas de blog.",
+      "Contenido del post del partnership con Searchline (3 sep 2026): activos/blog-indice.md solo tiene titular y una linea. No se puede describir la mecanica de la integracion.",
+      "Contexto completo de las cifras 63% y 147%: activos/sitio-home.md da el numero y una frase, sin cliente, periodo ni linea de base. Se usan con la redaccion exacta de la fuente.",
+      "Metricas de rendimiento de posts anteriores: no hay analitica en activos/. La eleccion de formato y cadencia es criterio editorial, no dato.",
+      "activos/calendario.csv solo contiene piezas publicadas, ninguna planificada. No se pudo verificar colision con contenido ya comprometido para la semana 37.",
+      "Autor y fecha de la entrada 'Making sense of AI visibility' (blog-indice.md #12): sin datos. No se enlaza por no poder verificar que siga publicada."
+    ],
+    "riesgos": [
+      "Canibalizacion: 'Global SEO in 2026: What Changed' (17 abr 2026) y 'How Content Strategy Shapes International SEO Performance' (5 ago 2026) tocan territorio cercano. Las dos piezas nuevas se diferencian por el eje de respuestas generadas por IA, pero conviene revisar solapamiento antes de publicar.",
+      "Colision con competencia: 'growth engine' aparece en el titular de Verilang y en /native-reach/ de Acme. Evitado deliberadamente en las cinco piezas (restriccion R4).",
+      "El angulo asume que el publico tiene un segundo mercado identificable. Para clientes monomercado con varios idiomas el marco pierde fuerza.",
+      "Las cifras 63% y 147% se presentan sin cliente ni periodo porque la fuente no los da. Si legal o marketing exigen atribucion completa, hay que quitarlas o completarlas.",
+      "Las cinco piezas dependen de un unico angulo semanal. Si el angulo se cae en revision, se cae la semana completa; no hay pieza de respaldo independiente.",
+      "El esquema plan_semanal.schema.json no admite fecha de publicacion por pieza (additionalProperties: false). El calendario vive solo en plan.md y puede derivar respecto del JSON."
+    ],
+    "apto_para_firma": false
+  },
+  "firma": {
+    "requiere_firma_humana": true,
+    "firmante": null,
+    "fecha_firma": null
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "por_modelo": {
+    "claude-opus-5": {
+      "llamadas": 26,
+      "in": 52,
+      "cache_w": 165453,
+      "cache_r": 2531008,
+      "out": 40324,
+      "usd": 3.30794525,
+      "subagente": 18
+    }
+  },
+  "total": {
+    "llamadas": 26,
+    "in": 52,
+    "cache_w": 165453,
+    "cache_r": 2531008,
+    "out": 40324,
+    "usd": 3.30794525
+  }
+}
