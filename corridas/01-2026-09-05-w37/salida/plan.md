@@ -1,0 +1,214 @@
+# Plan de contenidos — semana 2026-W37
+
+> **Generado automáticamente desde `plan_semanal.json`** con `herramientas/render.py`. No editar a mano: los cambios se pierden.
+> Rango 2026-09-07 / 2026-09-13 · generado 2026-09-05T21:46:26Z · modelo `claude-opus-5`
+
+**⛔ NO APTA PARA FIRMA** — firmante: `sin firmar`
+
+---
+
+## Ángulo de la semana
+
+### Translated everywhere, cited nowhere
+
+La visibilidad en las respuestas generadas por IA no es un numero global: hay una por mercado. Una marca puede tener todo su contenido traducido y aun asi no ser citada en la capa de respuestas de sus mercados secundarios, porque esa capa se alimenta de fuentes, competidores y formas de preguntar que son locales. Traducir da cobertura linguistica, no presencia InRegion. Por eso el diagnostico se hace mercado por mercado, no en el idioma de la casa matriz.
+
+| | |
+| --- | --- |
+| **Pilar Native Reach** | InRegion |
+| **Público** | CMOs y heads of global marketing de empresas enterprise que ya operan en varios mercados y sospechan que su contenido localizado no esta apareciendo en las respuestas generadas por IA. |
+| **CTA** | https://www.acme-multilingual.example/global-visibility-audit/ |
+
+## Calendario
+
+| Fecha | Canal | id | Título |
+| --- | --- | --- | --- |
+| 2026-09-08 | Blog | `translated-everywhere-cited-nowhere` | Translated Everywhere, Cited Nowhere: AI Discoverability Is a Per-Market Number |
+| 2026-09-08 | LinkedIn | `li-01` | Your content is translated everywhere and cited nowhere. |
+| 2026-09-09 | X | `x-01` | Translated everywhere, cited nowhere. |
+| 2026-09-10 | LinkedIn | `li-02` | "Are we visible in AI answers?" is the wrong question. |
+| 2026-09-10 | Newsletter | `news-w37-one-number-one-market` | Your AI visibility number describes one market |
+
+## Piezas
+
+### `translated-everywhere-cited-nowhere` · Blog · 2026-09-08
+
+**Translated Everywhere, Cited Nowhere: AI Discoverability Is a Per-Market Number**
+
+Every page is translated. Every market is live. Then a regional lead forwards you a screenshot: a buying question asked in her language, an AI-generated answer that lists a handful of vendors, and none of them is you.
+
+The reflex is to file that as a coverage gap and send it back to the localization queue. It is not a coverage gap. Coverage arrived. Something else did not.
+
+## One number, reported in the wrong language
+
+We have already said that "AI-generated answers are changing how visibility works," and that measuring it is the hard part. What that left open is the unit. Most teams still ask "what is our AI visibility?" as if it were a single figure, calculated in the language of headquarters.
+
+It is not a single figure. There is one per market.
+
+Translation moves your words across a language boundary. It does not move your brand into the set of sources a model reaches for when a buyer in Sao Paulo or Munich asks a question in their own words. Those are different systems, fed by different inputs.
+
+## What makes the answer layer local
+
+The inputs that shape an answer in a given market have almost nothing to do with language.
+
+**Local sources.** The publications, comparison sites, and industry bodies a model leans on in Brazil are not the ones it leans on in the US. English-language coverage does not travel.
+
+**Local competitors.** The vendors that appear in a German answer are the ones with German-market presence. They may not be the ones on your global battlecard.
+
+**The local shape of the question.** Buyers do not ask a translated version of your English query. They ask a different question, assembled from local categories and local buying habits.
+
+That is the InRegion pillar of Native Reach, stated plainly: campaigns "should match local demand, local rivals, and local buyer needs." Local trends, local competitors, local needs. It describes the problem word for word.
+
+## Ranking is not citation
+
+Acme's published results include an 63% increase in conversions in Brazil through SEO. That is a real result, in one market and in the results-list layer. It is also the limit of what a ranking number can tell you: it measures whether you can be found in a list. It says nothing about whether you are cited in an answer. [DATO FALTANTE: share of traffic coming from AI-generated answers, by market - not published]
+
+So the diagnosis has to change shape. Asked once per market, separately: which sources are shaping the answers here? Which competitors appear in them, and on the strength of what? How do buyers here actually phrase the question? Is our content in a form that can be cited, or only in a form that can be read?
+
+## Where to start
+
+Earlier this month we announced a partnership with Searchline, connecting "Searchline's AI search intelligence with Acme's global content expertise." That announcement described a capability. This is the problem the capability exists for. [DATO FALTANTE: partnership outcome metrics - the announcement publishes no figures]
+
+Take one market: the one where the numbers look good and the pipeline does not. Start with the Free Global Visibility Audit.
+
+**CTA:** Free Global Visibility Audit - https://www.acme-multilingual.example/global-visibility-audit/
+
+**Firma:** _sin firma de autor (voz de marca)_
+
+**Keywords:** `ai discoverability by market` · `ai visibility per market` · `cited in ai answers` · `multilingual ai discoverability` · `answer layer by market`
+
+**Fuentes:** `activos/sitio-native-reach.md` · `activos/sitio-home.md` · `activos/blog-indice.md` · `activos/calendario.csv`
+
+### `news-w37-one-number-one-market` · Newsletter · 2026-09-10
+
+**Your AI visibility number describes one market**
+
+Everything is translated. Every market is live. And in the answers your buyers are reading, in their own language, you are not there.
+
+Ask your team for "our AI visibility" and a number comes back. That number describes your home market. It does not describe the others.
+
+Each market assembles its own answer layer: out of the sources buyers there read, the competitors buyers there already know, and the way a question gets phrased when nobody translates it first. Translation clears the language barrier. It does not put you in that set.
+
+The uncomfortable part is where this shows up. The markets most likely to be missing are the ones whose dashboards look healthy. Acme's published results include an 63% increase in conversions in Brazil through SEO - a result in one market, in the results-list layer. Whether that market's AI-generated answers cite you is a different question and has to be measured separately. [DATO FALTANTE: share of traffic coming from AI-generated answers, by market - not published]
+
+The InRegion pillar of Native Reach says campaigns "should match local demand, local rivals, and local buyer needs." Nothing in that sentence is about language. That is the whole point.
+
+## Before your next quarterly review
+
+Pick your largest market outside your home market. For that market alone, ask which sources are shaping the answers buyers see, which competitors show up in them, and how those buyers actually phrase the question. Then do the next market.
+
+What you are looking for is not one score. It is the gap between markets.
+
+We announced a partnership with Searchline this month to work on exactly this layer, connecting "Searchline's AI search intelligence with Acme's global content expertise." The capability is the easy half. Knowing which market to point it at is the half worth your morning.
+
+Start here: Free Global Visibility Audit - https://www.acme-multilingual.example/global-visibility-audit/
+
+**CTA:** Free Global Visibility Audit - https://www.acme-multilingual.example/global-visibility-audit/
+
+**Firma:** _sin firma de autor (voz de marca)_
+
+**Keywords:** `ai visibility by market` · `ai discoverability audit` · `market by market discoverability`
+
+**Fuentes:** `activos/sitio-native-reach.md` · `activos/sitio-home.md` · `activos/blog-indice.md` · `activos/calendario.csv`
+
+### `li-01` · LinkedIn · 2026-09-08
+
+**Your content is translated everywhere and cited nowhere.**
+
+You have a page in every language you sell in. Then a buyer in one of those markets asks the AI answer layer a purchase question, and the answer comes back assembled from local sources, local competitors, and the local phrasing of that question. Your translated page was never part of it.
+
+Coverage in a language is not presence in a market. InRegion says it plainly: "Campaigns should match local demand, local rivals, and local buyer needs."
+
+One global visibility score hides the market where you are absent. Read it market by market instead.
+
+**CTA:** Free Global Visibility Audit - https://www.acme-multilingual.example/global-visibility-audit/
+
+**Firma:** _sin firma de autor (voz de marca)_
+
+**Fuentes:** `activos/sitio-native-reach.md` · `activos/sitio-home.md` · `activos/blog-indice.md`
+
+### `x-01` · X · 2026-09-09
+
+**Translated everywhere, cited nowhere.**
+
+In each of your markets the AI answer layer builds from local sources, local competitors, and the local phrasing of the question. One global visibility number hides that.
+
+**CTA:** https://www.acme-multilingual.example/global-visibility-audit/
+
+**Firma:** _sin firma de autor (voz de marca)_
+
+**Fuentes:** `activos/sitio-native-reach.md` · `activos/sitio-home.md` · `activos/blog-indice.md`
+
+### `li-02` · LinkedIn · 2026-09-10
+
+**"Are we visible in AI answers?" is the wrong question.**
+
+The right one is: in which markets are we not, and who is being cited instead of us?
+
+The answer layer is assembled locally. Different sources carry weight, different competitors get named, and the same buying question is phrased differently in each market. A single global read averages that into a number describing no market you actually sell in.
+
+InRegion is the pillar that fails here, and it fails one market at a time. So the read has to be per market: which questions, which local sources, which competitor gets named in your place.
+
+**CTA:** Free Global Visibility Audit - https://www.acme-multilingual.example/global-visibility-audit/ #NativeReach
+
+**Firma:** _sin firma de autor (voz de marca)_
+
+**Fuentes:** `activos/sitio-native-reach.md` · `activos/sitio-home.md` · `activos/blog-indice.md`
+
+## SEO
+
+**Keyword principal:** `AI discoverability by market`
+
+**Secundarias:** `global visibility audit` · `brand citations in AI-generated answers` · `AI search visibility in secondary markets` · `multilingual content discoverability` · `Native Reach`
+
+| Desde | Hacia | Anchor |
+| --- | --- | --- |
+| `blog-01` ⚠️ *id inexistente* | `/global-visibility-audit/` | global visibility audit |
+| `blog-01` ⚠️ *id inexistente* | `/native-reach/` | Native Reach |
+| `blog-01` ⚠️ *id inexistente* | `/blog/` | Making sense of AI visibility |
+| `blog-02` ⚠️ *id inexistente* | `/global-visibility-audit/` | run a discoverability audit |
+| `blog-02` ⚠️ *id inexistente* | `/native-reach/` | the InRegion pillar |
+| `li-01` | `/global-visibility-audit/` | Free Global Visibility Audit |
+| `x-01` | `/global-visibility-audit/` | acme-multilingual.example/global-visibility-audit |
+
+## Control de calidad
+
+**Apto para firma: NO**
+
+### Cifras usadas (3)
+
+- **63% — 'an 63% increase in conversions in Brazil through SEO', en la pieza translated-everywhere-cited-nowhere. Literal en la fuente: '63% | Aumento de conversiones en Brasil via SEO'. Rendicion fiel. La pieza acota explicitamente que mide la capa de listado de resultados y no la citacion en respuestas de IA, que es el uso correcto segun contexto/marca.md §5.** → `activos/sitio-home.md`
+- **63% — misma cifra reutilizada en la pieza news-w37-one-number-one-market ('a result in one market, in the results-list layer'), con la misma acotacion explicita. Es la unica cifra numerica de todo el plan: las otras tres publicadas (21 dias, 147%, 44%) no se usaron.** → `activos/sitio-home.md`
+- **Fecha relativa 'Earlier this month' (blog) y 'this month' (newsletter), referidas al anuncio del partnership con Searchline. La fecha publicada es 2026-09-03; las piezas salen el 2026-09-08 y el 2026-09-10. La afirmacion es verdadera solo si se publica dentro de septiembre 2026: si el calendario se corre a octubre, pasa a ser falsa y viola R1 por fecha.** → `activos/calendario.csv`
+
+### Datos faltantes (7)
+
+- Share de trafico proveniente de respuestas generadas por IA, por mercado — no publicado. Marcado en el cuerpo de dos piezas.
+- Metricas de resultado del partnership con Searchline — el anuncio no publica cifras.
+- Fecha de publicacion y URL canonica del post #12 'Making sense of AI visibility'. Sin la fecha no se puede correr la prueba de R6 contra el contenido mas cercano al angulo; sin la URL, el enlace interno declarado hacia el no se puede construir.
+- Contexto del 63%: cliente, periodo y linea de base. activos/sitio-home.md publica la cifra sin ninguno de los tres.
+- Historial de piezas de linkedin, x y newsletter. activos/calendario.csv tiene 5 filas, todas de canal 'blog', de modo que R6 no se puede verificar para las 4 piezas no-blog de esta semana.
+- Contenido on-page de /global-visibility-audit/ — ningun activo captura el copy de esa pagina; se requiere fetch o Search Console antes de fijar el target de la keyword principal.
+- Volumen de busqueda, dificultad y posicion actual de la keyword principal y de las 5 secundarias — requiere Search Console; el sistema no tiene acceso.
+
+### Riesgos (11)
+
+- BLOQUEANTE — seo.enlazado_interno es inejecutable: 5 de sus 7 entradas apuntan a piezas que no existen. Usa 'desde': 'blog-01' (3 veces) y 'blog-02' (2 veces), pero los ids reales del plan son 'translated-everywhere-cited-nowhere' y 'news-w37-one-number-one-market'. 'blog-02' ademas presupone una segunda pieza de blog que el plan no tiene. El bloque de SEO se escribio contra un borrador distinto del que se consolido: sintoma de ola 2 en paralelo sin convencion de ids compartida. CAUSA RAIZ del contrato v1.
+- BLOQUEANTE (resuelto durante la corrida) — Faltaba el archivo salida/plan.md que exige el §5 FORMATO. Se resolvio generandolo desde el JSON con herramientas/render.py en vez de escribirlo a mano, para que la deriva entre ambos entregables sea imposible por construccion.
+- La tesis central de la semana — que la capa de respuestas se arma por mercado a partir de fuentes locales, competidores locales y la forma local de la pregunta — no tiene respaldo en ningun archivo de activos/. Las cinco piezas la afirman en indicativo. No es violacion formal de R1, que cubre cifras, fechas y resultados, y validar.py no lo puede ver; pero sostiene el peso de todo el plan y hoy solo la respalda contexto/marca.md, que lo produjo el propio sistema. Requiere validacion humana de dominio antes de publicar.
+- El 63% se publica sin cliente, sin periodo y sin linea de base, y aparece en dos de las cinco piezas. Riesgo de credibilidad y legal si un prospecto lo pide desagregado.
+- R6 solo se pudo verificar parcialmente: el calendario no registra ninguna pieza de linkedin, x ni newsletter, y el post #12 no tiene fecha. La prueba de 'no repetir las ultimas 4 semanas' no es concluyente para 4 de las 5 piezas.
+- El campo modelo declara 'claude-opus-5' pero el front-matter de los contratos declara sonnet como modelo objetivo. Si el modelo cambia entre corridas sin anotarse como variable, la comparacion entre corridas mezcla dos causas. Pendiente de resolver en el banco de pruebas de COSTOS.md.
+- La firma del autor no es registrable en la salida: el schema define piezas con additionalProperties: false y sin campo de autor. El reparto de firmas que exige el contrato del director queda sin evidencia en el entregable.
+- El nombre de la marca aparece con tres grafias distintas en activos/: 'Acme', 'Acme' y 'Acme'. Las piezas mezclan dos. Definir la grafia publica y el uso del simbolo de marca registrada antes de publicar.
+- R4 verificado termino por termino contra activos/competencia-verilang.md: sin coincidencias en las 5 piezas. 'growth engine' no aparece, pese a que el propio activos/sitio-native-reach.md lo usa.
+- Las piezas li-01, x-01 y li-02 declaran activos/blog-indice.md en fuentes sin sostener ninguna afirmacion proveniente de ese archivo. El control C1 lo da por bueno porque el archivo existe, pero declarar fuentes que no se usan diluye la senal de trazabilidad de R2.
+- La escena de apertura de la pieza de blog esta escrita como hipotesis en segunda persona, no como caso de cliente. Si en edicion se la reescribe en tercera persona o se le agrega un nombre de cliente, pasa a ser un resultado afirmado sin fuente y viola R1.
+
+---
+
+## Firma
+
+- Requiere firma humana: **True** (R3, siempre)
+- Firmante: **sin firmar**
+- Fecha de firma: **—**
