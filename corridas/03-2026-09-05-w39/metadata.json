@@ -21,6 +21,7 @@
     "render.py"
   ],
   "validador": "exit 0",
+  "validador_actual": "exit 0",
   "apto_para_firma": false,
   "consumo": {
     "por_modelo": {

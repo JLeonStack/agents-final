@@ -21,6 +21,8 @@
     "render.py"
   ],
   "validador": "exit 0",
+  "validador_actual": "exit 1",
+  "nota_validador": "exit 0 con el validador vigente al correrla (solo C1 y C2). Con el validador actual da exit 1: el control C3 se agrego justamente por lo que esta corrida revelo, y su salida se archiva sin retocar. Ver DECISIONES.md §8.",
   "apto_para_firma": false,
   "consumo": {
     "por_modelo": {

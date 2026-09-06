@@ -38,6 +38,22 @@ fija un ángulo editorial, escribe las piezas de blog y redes, arma el plan de S
 calendario editorial semanal y hoy lo hace a mano: le devuelve borradores trazables y una
 lista corta de decisiones que un humano tiene que tomar. **No publica nada, nunca.**
 
+### Si lo querés correr, no leas esto: leé [`OPERACION.md`](OPERACION.md)
+
+Este README explica **qué es** el sistema y qué falló al construirlo.
+[`OPERACION.md`](OPERACION.md) es el runbook: requisitos, los pasos de una corrida de punta a punta, los
+prompts exactos que se pegan, y qué hacer cuando algo se rompe. El primer paso no gasta un
+token y responde si el repositorio está sano:
+
+```bash
+python3 herramientas/verificar-repo.py
+```
+
+Diez controles del repositorio **contra su propia documentación** — contratos sincronizados,
+R1–R8 coherente en los seis, las tres corridas completas y reconstruibles byte a byte, la jaula
+de permisos cargada. Exit 1 si algo no cierra, y dice qué. Una corrida completa cuesta ≈ USD
+2,60 y tarda unos 35 minutos, de los cuales 10 son de la persona que revisa y firma.
+
 ---
 
 ## Cómo se lo pedí
@@ -104,8 +120,10 @@ ENTREGA
 ### 4 · Cómo se invoca a cada especialista — textual
 
 Los cinco contratos de especialista están en [`prompts/agentes/`](prompts/agentes/), cada uno
-con sus propias seis piezas. **A ninguno se le pega el contrato en el mensaje: se le pasa la
-ruta**, y lo lee del repositorio.
+con sus propias seis piezas. **A ninguno se le pega el contrato en el mensaje**: el contrato es
+un archivo versionado del repositorio y el agente lo lee de ahí.
+
+**Así se invocó en las tres corridas archivadas** — pasándole la ruta:
 
 ```
 Trabajás en el repositorio actual. Tu contrato está en archivos versionados del repo,
@@ -119,13 +137,28 @@ ya aprobado. Leé después los activos que necesites para respaldar afirmaciones
 
 PASO 3 — ejecutá tu tarea para la semana 2026-W39. CTA: <url>
 
-LÍMITES: NO escribas archivos. NO leas `corridas/`. Devolveme exactamente los campos
+LÍMITES: NO escribas archivos. NO leás `corridas/`. Devolveme exactamente los campos
 que tu contrato pide en su sección FORMATO.
 ```
 
 Eso tiene una consecuencia buena que no había previsto: **cualquiera que clone el repo ejecuta
 exactamente los mismos contratos**, porque son archivos versionados y no texto pegado en una
-conversación. Y una mala, que descubrí tarde y está en «Qué falló».
+conversación. Y una mala, que descubrí tarde: pasarle la ruta lo ejecuta como **agente
+genérico**, y el `tools:` que su contrato declara no se le aplica.
+
+**Así se invoca ahora** — por su **nombre registrado**, que es lo que hace que el `tools:` del
+frontmatter sea una jaula y no una declaración:
+
+```
+Invocá a cada especialista POR SU NOMBRE REGISTRADO — estratega-posicionamiento,
+redactor-contenido, community-social, seo-analista, editor-qa — y no pegándole su
+contrato ni su ruta en el mensaje.
+```
+
+El prompt completo del director está en [`OPERACION.md`](OPERACION.md) paso 3. El cambio se
+pudo hacer por una razón tonta y decisiva: **los contratos ahora existen antes de que empiece
+la sesión.** Cuando se construyó el sistema se escribían durante la sesión, y por eso no había
+nada registrado que invocar.
 
 ### 5 · El orden de trabajo — tres olas
 
@@ -171,10 +204,17 @@ existen), **C2** antialucinación (toda cifra con % aparece literal en `activos/
 integridad referencial (los enlaces internos apuntan a piezas que existen).
 
 ```bash
+python3 herramientas/verificar-repo.py                                   # 10 controles del repo
 python3 herramientas/render.py  corridas/<id>/salida/plan_semanal.json   # genera plan.md del JSON
 python3 herramientas/costo.py --desde <inicio> --hasta <fin>             # tokens y costo reales
-bash herramientas/sincronizar.sh                                          # prompts/agentes/ → .claude/agents/
+bash herramientas/sincronizar.sh                                         # prompts/agentes/ → .claude/agents/
+bash herramientas/nueva-corrida.sh 2026-W40 <desde> <hasta>              # abre una corrida
+bash herramientas/cerrar-corrida.sh corridas/<id>                        # valida, mide y cierra
 ```
+
+`cerrar-corrida.sh` mide, valida, regenera el markdown y **deja `FIRMA.md` y `NOTAS.md` en
+blanco a propósito**: termina imprimiendo las tres cosas que ningún script puede hacer.
+Automatizar hasta el borde de la firma y frenar ahí es la línea del sistema.
 
 ### La supervisión está definida, no declamada
 
@@ -206,10 +246,10 @@ la usó.** Ningún agente supo que estaba siendo probado.
 
 ## Qué falta o qué falló
 
-### La tabla de permisos que escribí nunca estuvo vigente
+### La tabla de permisos que escribí no estuvo vigente en ninguna de las tres corridas
 
 Es lo más serio que encontré, y lo encontré tarde. `GOBIERNO.md` presentaba una tabla de
-permisos como si fuera configuración. **No lo era.** El único control mecánico de permisos es
+permisos como si fuera configuración. **No lo era.** El único control mecánico de permisos era
 el `tools:` del frontmatter de cada contrato —`redactor-contenido.md` declara
 `tools: Read, Glob, Grep`— y ese control **solo se aplica si el agente se invoca por su nombre
 registrado**. Yo los invoqué pasando la ruta del contrato, que los ejecuta como agentes
@@ -218,7 +258,27 @@ genéricos.
 Inspeccioné los transcripts de la corrida 03: **cuatro de los cinco usaron `Bash`** —uno lo
 llamó 17 veces— y ninguno de los cinco contratos lo declara. La regla «no modifica su propia
 verificación» se cumplió en las tres corridas, pero **por instrucción, no porque estuviera
-impedida**. Está desarrollado en [`GOBIERNO.md`](GOBIERNO.md) §1.
+impedida**.
+
+**Después de las tres corridas se puso la jaula de verdad**, y la prueba no es que esté
+escrita: es que **bloqueó a la sesión que la escribía**. Al crear
+`herramientas/verificar-repo.py` la herramienta `Write` fue rechazada —*«File is in a directory
+that is denied by your permission settings»*—, y lo mismo un `rm` sobre una corrida archivada y
+un `cp` sobre el propio archivo de configuración. Ampliar los propios permisos dejó de ser algo
+que el sistema pueda hacer.
+
+**Y tiene un agujero, medido.** La regla `deny` se evalúa sobre el comando: un
+`echo >> herramientas/costo.py` se bloquea, y un `python3 - <<'PY'` que escribe el mismo
+archivo desde adentro del intérprete **pasa**. Para los cinco especialistas eso da igual —
+ninguno tiene `Bash`, y sin intérprete no hay elusión. Para el director no: necesita `Bash`
+para correr el validador. La jaula frena el atajo distraído, que es el modo de falla real, y
+no frena a uno decidido a rodearla. Todo desarrollado en [`GOBIERNO.md`](GOBIERNO.md) §1 y en
+[`DECISIONES.md`](DECISIONES.md) §15.
+
+**Lo que sigue sin probarse:** la jaula **todavía no corrió una corrida completa**. Las tres
+archivadas son anteriores. Contar las llamadas a `Bash` de los cinco especialistas en los
+transcripts de una corrida hecha con la jaula puesta es la corrida 04, y es de quien la corra.
+Escribir acá que está probado sería el mismo error que este repositorio ya cometió una vez.
 
 ### Las tres corridas terminaron sin firmar
 
@@ -268,6 +328,11 @@ completo en [`DECISIONES.md`](DECISIONES.md) §6.
   público real; los identificadores se redactaron antes de publicar el repositorio.
 - **La historia de commits no muestra días de trabajo**, porque no los hubo: el proyecto se
   ejecutó en una sesión concentrada.
+- **La jaula de permisos y el runbook no fueron ejercitados en una corrida completa.** Se
+  probaron contra intentos directos —la jaula bloqueó tres veces a la sesión que la escribía— y
+  los scripts de apertura y cierre se corrieron de punta a punta sobre una corrida de prueba
+  que después se borró. Pero **el sistema entero con la configuración nueva es la corrida 04**,
+  y todavía no existe.
 
 ---
 
@@ -287,6 +352,13 @@ sistema puede citarse a sí mismo como fuente, y después cometí exactamente es
 más arriba — afirmé en `GOBIERNO.md` que los permisos eran de cierta manera porque yo mismo los
 había escrito así, sin verificar los transcripts. Lo encontró un evaluador externo, no yo.
 
+**Un sistema no está terminado cuando funciona: está terminado cuando funciona en manos de
+alguien que no lo construyó.** La distancia entre las dos cosas no se mide en código —el
+sistema no cambió al escribir el runbook— sino en todo lo que el autor sabe sin haberlo
+escrito. Acá eran tres cosas: por dónde empezar, cómo saber si el repo está sano sin gastar una
+corrida, y un nombre de directorio escrito a mano que hacía que el medidor de costo devolviera
+«sin datos» en cualquier máquina que no fuera la mía.
+
 **La verificación mecánica y la humana encuentran cosas distintas, y hay que tener las dos.**
 `validar.py` salió en verde en las tres corridas, y las tres terminaron no aptas para firma:
 los tres hallazgos graves los encontró el `editor-qa` o una persona. La herramienta verifica la
@@ -298,6 +370,7 @@ forma; el criterio sigue siendo del que firma. **La responsabilidad no se delega
 
 | Dónde | Qué contiene |
 |---|---|
+| [`OPERACION.md`](OPERACION.md) | **El runbook.** Requisitos, los pasos de una corrida, los prompts que se pegan, y qué hacer cuando algo falla |
 | [`prompts/system_prompt.md`](prompts/system_prompt.md) | Contrato del director: seis piezas, R1–R8, ruteo del equipo, mapa L0–L4 |
 | [`prompts/user_prompt.md`](prompts/user_prompt.md) | Plantilla del brief semanal |
 | [`prompts/agentes/`](prompts/agentes/) | Los cinco contratos de especialista |
@@ -309,4 +382,5 @@ forma; el criterio sigue siendo del que firma. **La responsabilidad no se delega
 | [`activos/`](activos/) | Material público real de la marca, con procedencia en [`FUENTES.md`](activos/FUENTES.md) |
 | [`contexto/marca.md`](contexto/marca.md) | El documento compartido que mantiene el estratega y leen los otros cuatro |
 | [`esquemas/`](esquemas/plan_semanal.schema.json) | El contrato de datos de la salida |
-| [`herramientas/`](herramientas/) | `validar.py` · `render.py` · `costo.py` · `sincronizar.sh` |
+| [`herramientas/`](herramientas/) | `verificar-repo.py` · `validar.py` · `render.py` · `costo.py` · `nueva-corrida.sh` · `cerrar-corrida.sh` · `sincronizar.sh` |
+| [`.claude/`](.claude/) | Lo que hace que el repo corra como dice: los cinco agentes registrados y la jaula de permisos de `settings.json` |

@@ -1,0 +1,9 @@
+# Residuo de correr las herramientas. Nada de esto es evidencia del trabajo.
+__pycache__/
+*.pyc
+.DS_Store
+
+# La configuracion PERSONAL de Claude Code de cada persona. `.claude/settings.json` y
+# `.claude/agents/` SI se versionan: son parte del sistema — la jaula de permisos y los
+# cinco contratos registrados. Sin ellos el repo no corre como dice que corre.
+.claude/settings.local.json

@@ -20,7 +20,21 @@ sesión (`~/.claude/projects/<slug>/*.jsonl`) y de cada subagente
 ```bash
 python3 herramientas/costo.py --desde 2026-09-05T21:36:08Z --hasta 2026-09-05T22:05:00Z
 python3 herramientas/costo.py --sesion <ruta al transcript de un subagente>
+python3 herramientas/costo.py --desde … --hasta … --transcripts <dir>   # transcripts archivados
 ```
+
+**El `<slug>` se deriva de la ubicación real del repositorio**, no está escrito a mano: es la
+ruta absoluta con todo lo que no es alfanumérico reemplazado por `-`. Antes estaba hardcodeada
+la ruta de una laptop, y en cualquier otra máquina el script imprimía «sin datos en ese rango»:
+**no fallaba, mentía en silencio**, que es el mismo modo de falla de las tres trampas de abajo.
+Ahora, si no encuentra transcripts, lo dice — y una corrida sin consumo medido se declara como
+no medida, no se estima.
+
+**Comprobación de que la medición es reproducible.** Volviendo a correr el medidor hoy sobre la
+ventana archivada de la corrida 03 (`.inicio` → `.fin`, 2026-09-05T22:20:40Z → 22:54:42Z) sale
+**USD 3,9551** contra los **USD 3,9551** guardados en su `consumo.json` en el momento de
+correrla: 46 llamadas, 89.494 tokens de salida, los mismos dos modelos. La cifra de este
+documento no es una cifra que haya que creer: es una que se recalcula.
 
 **Tres trampas de medición que este trabajo encontró y corrigió** (la historia completa está
 en `DECISIONES.md` §4). Las tres empujaban en la misma dirección — hacer parecer el sistema

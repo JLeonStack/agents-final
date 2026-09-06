@@ -147,6 +147,14 @@ OLA 2   redactor-contenido      ┐
 OLA 3   editor-qa                   → verifica todo contra R1–R8 y emite control_calidad
 ```
 
+**A cada especialista se lo invoca por su nombre registrado** —
+`estratega-posicionamiento`, `redactor-contenido`, `community-social`, `seo-analista`,
+`editor-qa`— y **no** pegándole su contrato ni su ruta en el mensaje. Es lo que hace que el
+`tools:` de su frontmatter sea una jaula y no una declaración: invocado por ruta, un
+especialista corre como agente genérico y tiene `Bash`, `Write` y todo lo demás. En las tres
+corridas archivadas se invocó por ruta y cuatro de los cinco usaron `Bash` sin declararlo
+(`GOBIERNO.md` §1).
+
 **Cada especialista lee `contexto/marca.md` fresco al empezar.** No se pasan contexto entre
 ellos por conversación: se lo pasan por el archivo. Si el archivo está mal, todo sale mal —
 por eso es un punto de revisión humana (L2).

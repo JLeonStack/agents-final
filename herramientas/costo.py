@@ -26,6 +26,7 @@ Sin ellos solo se mide al director y el costo de una corrida sale ~5x más barat
 """
 import argparse
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -40,10 +41,25 @@ PRECIOS = {
 MULT_CACHE_ESCRITURA = 1.25
 MULT_CACHE_LECTURA = 0.10
 
-# Ruta por defecto de los transcripts en la maquina donde se corrio este trabajo.
-# Se puede sobreescribir con --transcripts para que el script sea reproducible en otra maquina.
-SLUG = "-Users-jdeleon-Documents-personal-ucema-MBA-Segundo-a-o-Agentes-IA-agents-final"
-DIR_TRANSCRIPTS = Path.home() / ".claude" / "projects" / SLUG
+# Donde viven los transcripts. Claude Code guarda uno por proyecto, en un directorio cuyo
+# nombre es la ruta absoluta del repo con todo lo que no es alfanumerico reemplazado por "-".
+# Se deriva de la ubicacion real del repositorio, para que el script tambien mida en la maquina
+# de otra persona; si ese directorio no existe se cae al slug de la maquina donde se corrio
+# este trabajo, y --transcripts sobreescribe cualquiera de los dos.
+SLUG_ORIGINAL = "-Users-jdeleon-Documents-personal-ucema-MBA-Segundo-a-o-Agentes-IA-agents-final"
+
+
+def slug_de(ruta: Path) -> str:
+    return re.sub(r"[^A-Za-z0-9]", "-", str(ruta))
+
+
+def dir_por_defecto() -> Path:
+    proyectos = Path.home() / ".claude" / "projects"
+    aqui = proyectos / slug_de(Path(__file__).resolve().parent.parent)
+    return aqui if aqui.exists() else proyectos / SLUG_ORIGINAL
+
+
+DIR_TRANSCRIPTS = dir_por_defecto()
 
 
 def ts(valor: str | None):

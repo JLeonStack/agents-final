@@ -17,14 +17,15 @@ mal · qué se revisa antes de confiar en una salida · quién firma.
 | Filesystem — `esquemas/`, `herramientas/` | Schema y validador | **solo lectura, para todos los agentes** | — |
 | Red — `WebFetch` | GET sobre `acme-multilingual.example` y el sitio del competidor. **Se usó para construir `activos/`: 4 llamadas, las cuatro en `activos/FUENTES.md`. No se ejecutó dentro de ninguna corrida.** Hubo además una quinta llamada de `WebFetch` en el proyecto, a `eve.dev`, para leer el template de equipo de marketing que inspiró la arquitectura: no aporta ningún contenido a `activos/` y por eso no está ahí, pero se declara acá para que el conteo cierre contra los transcripts | solo lectura, sin credenciales | L3 |
 
-> ### ⚠️ Estos permisos son documentales, no configuración vigente
+> ### ⚠️ En las tres corridas, estos permisos fueron documentales y no configuración vigente
 >
-> **Es el hallazgo más serio de la autoevaluación de este trabajo sobre sí mismo.** El único
-> control mecánico de permisos del sistema es el `tools:` del frontmatter de cada contrato —
-> por ejemplo, `redactor-contenido.md` declara `tools: Read, Glob, Grep`. Ese control **solo
-> se aplica si el agente se invoca por su nombre registrado en `.claude/agents/`.**
+> **Es el hallazgo más serio de la autoevaluación de este trabajo sobre sí mismo, y se deja
+> escrito tal como se encontró.** El único control mecánico de permisos que el sistema tenía
+> entonces era el `tools:` del frontmatter de cada contrato — por ejemplo,
+> `redactor-contenido.md` declara `tools: Read, Glob, Grep`. Ese control **solo se aplica si
+> el agente se invoca por su nombre registrado en `.claude/agents/`.**
 >
-> En estas corridas los especialistas se invocaron **pasándoles la ruta de su contrato**
+> En esas corridas los especialistas se invocaron **pasándoles la ruta de su contrato**
 > (ver `DECISIONES.md` §7), lo que los ejecuta como agentes genéricos. La inspección de los
 > transcripts de la corrida 03 lo confirma: **cuatro de los cinco invocaron `Bash`** — uno lo
 > usó 17 veces, y uno hizo además un `Write` — y **ninguno de los cinco contratos declara
@@ -34,12 +35,47 @@ mal · qué se revisa antes de confiar en una salida · quién firma.
 > **Consecuencia real:** los cinco agentes tuvieron lectura, escritura y ejecución sobre todo
 > el repo, incluidos `validar.py` y el schema. La regla «no modifica su propia verificación»
 > se cumplió —ninguna corrida tocó el validador— pero **se cumplió por instrucción, no porque
-> estuviera impedida.** La tabla de arriba describe el puesto que el sistema debería tener,
+> estuviera impedida.** La tabla de arriba describía el puesto que el sistema debería tener,
 > no la jaula que efectivamente tuvo.
->
-> **Arreglo:** invocar por nombre registrado, lo que exige que los contratos existan al
-> iniciar la sesión. No se pudo en este trabajo porque los contratos se escribieron durante
-> la sesión. Es la primera corrección pendiente del sistema.
+
+### La jaula vigente hoy — y hasta dónde llega
+
+La corrección #1 del sistema está hecha, **después** de las tres corridas y sin volver a
+correrlas. Son dos capas, y una tercera que no es técnica:
+
+| Capa | Qué es | A quién caza | Estado |
+| --- | --- | --- | --- |
+| **1 · `tools:` del frontmatter** | Cada contrato declara sus herramientas. Los cinco existen en `.claude/agents/` **antes** de abrir la sesión, así que ahora sí se los puede invocar por nombre registrado | Los cinco especialistas | **Vigente.** El control D2 de `verificar-repo.py` verifica además que ninguno declare `Bash` |
+| **2 · `deny` de `.claude/settings.json`** | Deniega `Write` y `Edit` sobre `esquemas/`, `herramientas/`, `prompts/`, `activos/`, las corridas archivadas y el propio `.claude/` | **Todos**, director incluido | **Vigente y verificada en esta sesión** (ver abajo) |
+| 3 · La instrucción del contrato | *«si el validador falla, arreglá el JSON — no toques el validador ni el schema»* | Todos | Vigente desde v1. Ya no es la única barrera |
+
+**Qué está verificado, textualmente.** Al escribir la jaula, la sesión que la escribió quedó
+adentro: el intento de crear `herramientas/verificar-repo.py` con la herramienta `Write` fue
+rechazado —*«File is in a directory that is denied by your permission settings»*—, un `rm` sobre
+una corrida archivada fue rechazado, y un `cp` sobre `.claude/settings.json` fue rechazado. **La
+jaula bloqueó a su propio autor antes que a nadie.** Ese es el estándar de prueba que
+`DECISIONES.md` §11 dice que le faltó a la versión anterior de esta sección: no *«escribí que
+los permisos son así»* sino *«intenté violarlos y no pude»*.
+
+**Y hasta dónde NO llega — el agujero, medido y no supuesto.** La regla `deny` se evalúa sobre
+el comando, así que **una escritura escondida adentro de un intérprete la elude**: en esta misma
+sesión, `python3 - <<'PY'` escribiendo a `herramientas/costo.py` pasó, y `echo >> herramientas/…`
+fue bloqueado. La consecuencia es precisa y hay que decirla así:
+
+- **Para los cinco especialistas la jaula es efectiva**, porque ninguno tiene `Bash`: sin
+  intérprete no hay elusión posible. Es el 89% de las llamadas de una corrida (`COSTOS.md` §3).
+- **Para el director no es una prueba de imposibilidad**, porque necesita `Bash` para correr
+  `validar.py` y `render.py`. Es una barrera de primer orden: frena el atajo distraído —que es
+  el modo de falla real— y no frena a un agente decidido a rodearla.
+
+**Lo que sigue pendiente.** La jaula está cargada y probada contra intentos directos, pero
+**todavía no fue ejercitada en una corrida completa**: las tres archivadas son anteriores. Que
+el `tools:` se aplique al invocar por nombre es cómo Claude Code está definido y cómo esta
+sesión los cargó, no algo que este repositorio haya medido en producción. La prueba
+—inspeccionar los transcripts de la corrida 04 y confirmar cero llamadas a `Bash` desde los
+cinco especialistas— es el paso 3 de [`OPERACION.md`](OPERACION.md), y es de la persona que
+corra la próxima. **Escribirlo acá no lo prueba: es exactamente el error que este documento
+cometió una vez.**
 
 ### Lo que el sistema NO toca — y no puede tocar
 
@@ -48,11 +84,13 @@ mal · qué se revisa antes de confiar en una salida · quién firma.
   salida sin firma humana es inválida por construcción, no por convención.**
 - **No manda mails.** No tiene acceso a ninguna cuenta.
 - **No toca sistemas internos.** Ni CRM, ni analytics, ni el CMS, ni datos de clientes.
-- **No modificó su propia verificación** en ninguna corrida — pero por instrucción, no por
-  permiso: ver el recuadro de arriba. El contrato lo dice explícitamente
-  (`prompts/user_prompt.md`): *si el validador falla, arreglá el JSON — no toques el validador
-  ni el schema*. Es la barrera contra el atajo más tentador de un agente con permiso de
-  escritura: cuando la verificación molesta, aflojar la verificación.
+- **No modificó su propia verificación** en ninguna corrida — pero en esas tres corridas fue
+  por instrucción y no por permiso: ver el recuadro de arriba. El contrato lo dice
+  explícitamente (`prompts/user_prompt.md`): *si el validador falla, arreglá el JSON — no
+  toques el validador ni el schema*. Es la barrera contra el atajo más tentador de un agente
+  con permiso de escritura: cuando la verificación molesta, aflojar la verificación. **Desde
+  la jaula de `.claude/settings.json`, esa instrucción tiene además una regla `deny` detrás**,
+  con el alcance y el agujero que la tabla de arriba declara.
 
 ### Confidencialidad — el riesgo propio de este caso
 
@@ -192,8 +230,16 @@ estable es esta:
 **Verificación mecánica, antes de todo lo anterior:**
 
 ```bash
+python3 herramientas/verificar-repo.py                                   # ¿el sistema está sano?
 python3 herramientas/validar.py corridas/<id>/salida/plan_semanal.json   # exit 0 obligatorio
 ```
+
+Los dos verifican cosas distintas y ninguno reemplaza al otro. `validar.py` verifica **una
+salida** contra el schema y los controles C1–C3. `verificar-repo.py` verifica **el sistema**
+contra su propia documentación: contratos sincronizados, R1–R8 coherente en los seis, corridas
+archivadas completas y reconstruibles, jaula de permisos cargada. Existe porque el hueco que
+tapa tiene tres antecedentes en este mismo trabajo —`DECISIONES.md` §11, §12 y §14— y en los
+tres lo encontró una persona, no una herramienta.
 
 Es condición necesaria y **claramente no suficiente**: las tres corridas salieron con exit 0
 contra el validador vigente al momento de correrlas, y las tres terminaron **no aptas para
