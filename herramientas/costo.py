@@ -30,15 +30,21 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-# USD por millón de tokens. Precios de lista de la API de Anthropic.
+# USD por millon de token. Precios de lista de la API de Anthropic, tomados de
+# https://platform.claude.com/docs/en/about-claude/pricing (seccion "Model pricing"),
+# consultado el 2026-09-06. No son estimaciones ni promedios: son las dos columnas
+# "Base input tokens" y "Output tokens" de esa tabla.
 PRECIOS = {
     "claude-opus-5":   {"in": 5.00, "out": 25.00},
     "claude-sonnet-5": {"in": 2.00, "out": 10.00},
     "claude-haiku-4-5": {"in": 1.00, "out": 5.00},
 }
-# SUPUESTO DECLARADO (ver COSTOS.md §supuestos): multiplicadores de caché estándar
-# sobre el precio de entrada. Escritura 1,25× · lectura 0,10×.
-MULT_CACHE_ESCRITURA = 1.25
+# Multiplicadores de cache sobre el precio de entrada, de la tabla "Prompt caching" de la
+# misma pagina. NO son un supuesto de este trabajo: son tarifa publicada.
+#   escritura con TTL de 5 minutos -> 1,25x   ·   escritura con TTL de 1 hora -> 2,00x
+#   lectura (cache hit)            -> 0,10x
+MULT_CACHE_ESCRITURA_5M = 1.25
+MULT_CACHE_ESCRITURA_1H = 2.00
 MULT_CACHE_LECTURA = 0.10
 
 # Donde viven los transcripts. Claude Code guarda uno por proyecto, en un directorio cuyo
@@ -101,11 +107,24 @@ def recolectar(desde, hasta, sesion: Path | None, raiz: Path | None = None):
                 continue
             if hasta and (momento is None or momento > hasta):
                 continue
+            # T4: la escritura de cache no tiene UN precio. El transcript trae el desglose
+            # por TTL en usage.cache_creation; el campo plano cache_creation_input_tokens
+            # los suma y no distingue. Cobrar todo a 1,25x subestima las escrituras de 1 hora,
+            # que valen 2,00x. Si el desglose no viene (transcripts viejos), se cae al plano
+            # y se cobra a 5m, que es el default de Claude Code.
+            cc = uso.get("cache_creation") or {}
+            cw_5m = cc.get("ephemeral_5m_input_tokens")
+            cw_1h = cc.get("ephemeral_1h_input_tokens")
+            if cw_5m is None and cw_1h is None:
+                cw_5m, cw_1h = uso.get("cache_creation_input_tokens", 0) or 0, 0
+            cw_5m, cw_1h = cw_5m or 0, cw_1h or 0
             fila = {
                 "modelo": msg.get("model", "desconocido"),
                 "subagente": "subagents" in str(archivo),
                 "in": uso.get("input_tokens", 0) or 0,
-                "cache_w": uso.get("cache_creation_input_tokens", 0) or 0,
+                "cache_w_5m": cw_5m,
+                "cache_w_1h": cw_1h,
+                "cache_w": cw_5m + cw_1h,
                 "cache_r": uso.get("cache_read_input_tokens", 0) or 0,
                 "out": uso.get("output_tokens", 0) or 0,
             }
@@ -132,7 +151,8 @@ def costo(fila) -> float:
         return 0.0
     return (
         fila["in"] * p["in"]
-        + fila["cache_w"] * p["in"] * MULT_CACHE_ESCRITURA
+        + fila["cache_w_5m"] * p["in"] * MULT_CACHE_ESCRITURA_5M
+        + fila["cache_w_1h"] * p["in"] * MULT_CACHE_ESCRITURA_1H
         + fila["cache_r"] * p["in"] * MULT_CACHE_LECTURA
         + fila["out"] * p["out"]
     ) / 1_000_000
@@ -157,15 +177,17 @@ def main() -> None:
     por_modelo: dict[str, dict] = {}
     for f in filas:
         acc = por_modelo.setdefault(f["modelo"], {
-            "llamadas": 0, "in": 0, "cache_w": 0, "cache_r": 0, "out": 0, "usd": 0.0, "subagente": 0
+            "llamadas": 0, "in": 0, "cache_w": 0, "cache_w_5m": 0, "cache_w_1h": 0,
+            "cache_r": 0, "out": 0, "usd": 0.0, "subagente": 0
         })
         acc["llamadas"] += 1
         acc["subagente"] += int(f["subagente"])
-        for k in ("in", "cache_w", "cache_r", "out"):
+        for k in ("in", "cache_w", "cache_w_5m", "cache_w_1h", "cache_r", "out"):
             acc[k] += f[k]
         acc["usd"] += costo(f)
 
-    total = {"llamadas": 0, "in": 0, "cache_w": 0, "cache_r": 0, "out": 0, "usd": 0.0}
+    total = {"llamadas": 0, "in": 0, "cache_w": 0, "cache_w_5m": 0, "cache_w_1h": 0,
+             "cache_r": 0, "out": 0, "usd": 0.0}
     for acc in por_modelo.values():
         for k in total:
             total[k] += acc[k]
@@ -174,14 +196,15 @@ def main() -> None:
         print(json.dumps({"por_modelo": por_modelo, "total": total}, indent=2, ensure_ascii=False))
         return
 
-    print(f"| Modelo | Llamadas | (subag.) | Entrada | Caché escr. | Caché lect. | Salida | USD |")
-    print(f"| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |")
+    print(f"| Modelo | Llamadas | (subag.) | Entrada | Caché escr. 5m | Caché escr. 1h | Caché lect. | Salida | USD |")
+    print(f"| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |")
     for m, acc in sorted(por_modelo.items()):
         print(f"| `{m}` | {acc['llamadas']} | {acc['subagente']} | {acc['in']:,} | "
-              f"{acc['cache_w']:,} | {acc['cache_r']:,} | {acc['out']:,} | {acc['usd']:.4f} |")
+              f"{acc['cache_w_5m']:,} | {acc['cache_w_1h']:,} | {acc['cache_r']:,} | "
+              f"{acc['out']:,} | {acc['usd']:.4f} |")
     print(f"| **total** | **{total['llamadas']}** | | **{total['in']:,}** | "
-          f"**{total['cache_w']:,}** | **{total['cache_r']:,}** | **{total['out']:,}** | "
-          f"**{total['usd']:.4f}** |")
+          f"**{total['cache_w_5m']:,}** | **{total['cache_w_1h']:,}** | **{total['cache_r']:,}** | "
+          f"**{total['out']:,}** | **{total['usd']:.4f}** |")
 
 
 if __name__ == "__main__":

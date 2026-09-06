@@ -29,15 +29,19 @@
         "llamadas": 6,
         "in": 12,
         "cache_w": 23300,
+        "cache_w_5m": 0,
+        "cache_w_1h": 23300,
         "cache_r": 1858743,
         "out": 10509,
-        "usd": 1.3377815,
+        "usd": 1.4251565,
         "subagente": 0
       },
       "claude-sonnet-5": {
         "llamadas": 40,
         "in": 80,
         "cache_w": 499313,
+        "cache_w_5m": 499313,
+        "cache_w_1h": 0,
         "cache_r": 2895004,
         "out": 78985,
         "usd": 2.6172933000000005,
@@ -48,9 +52,11 @@
       "llamadas": 46,
       "in": 92,
       "cache_w": 522613,
+      "cache_w_5m": 499313,
+      "cache_w_1h": 23300,
       "cache_r": 4753747,
       "out": 89494,
-      "usd": 3.9550748000000002
+      "usd": 4.0424498
     }
   },
   "nota_de_atribucion": "Ventana limpia: no hubo nada corriendo en paralelo. El desglose por agente esta en COSTOS.md."

@@ -36,7 +36,7 @@ Lo detectó el editor-qa, no el validador.
 
 Al deduplicar por `requestId` me quedaba con el primer bloque de streaming, que trae el
 contador de salida incompleto, y no escaneaba los transcripts de los subagentes.
-**Resultado antes de arreglarlo: USD 1,41. Resultado real: USD 5,97.** Subestimaba 4,2x.
+**Resultado antes de arreglarlo: USD 1,41. Resultado real: USD 6,10.** Subestimaba 4,3x.
 
 ## Lo que el editor-qa vio y ninguna herramienta puede ver
 

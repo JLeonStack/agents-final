@@ -30,9 +30,11 @@
         "llamadas": 64,
         "in": 128,
         "cache_w": 296880,
+        "cache_w_5m": 260800,
+        "cache_w_1h": 36080,
         "cache_r": 4829472,
         "out": 67842,
-        "usd": 5.966926000000002,
+        "usd": 6.102226000000002,
         "subagente": 57
       }
     },
@@ -40,9 +42,11 @@
       "llamadas": 64,
       "in": 128,
       "cache_w": 296880,
+      "cache_w_5m": 260800,
+      "cache_w_1h": 36080,
       "cache_r": 4829472,
       "out": 67842,
-      "usd": 5.966926000000002
+      "usd": 6.102226000000002
     }
   },
   "nota_de_atribucion": "El costo se atribuye por ventana temporal sobre los transcripts del director y de los subagentes. Es exacto para corridas secuenciales; si dos corridas se solapan en el tiempo, la atribucion se mezcla. Ver COSTOS.md, seccion Metodo."

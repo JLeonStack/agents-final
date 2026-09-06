@@ -4,15 +4,19 @@
       "llamadas": 63,
       "in": 126,
       "cache_w": 347722,
+      "cache_w_5m": 306132,
+      "cache_w_1h": 41590,
       "cache_r": 5265845,
       "out": 87777,
-      "usd": 7.001239999999999,
+      "usd": 7.157202499999999,
       "subagente": 57
     },
     "claude-sonnet-5": {
       "llamadas": 13,
       "in": 26,
       "cache_w": 91426,
+      "cache_w_5m": 91426,
+      "cache_w_1h": 0,
       "cache_r": 776675,
       "out": 8285,
       "usd": 0.46680200000000005,
@@ -22,6 +26,8 @@
       "llamadas": 3,
       "in": 26,
       "cache_w": 52064,
+      "cache_w_5m": 52064,
+      "cache_w_1h": 0,
       "cache_r": 80232,
       "out": 448,
       "usd": 0.0753692,
@@ -32,8 +38,10 @@
     "llamadas": 79,
     "in": 178,
     "cache_w": 491212,
+    "cache_w_5m": 449622,
+    "cache_w_1h": 41590,
     "cache_r": 6122752,
     "out": 96510,
-    "usd": 7.5434111999999995
+    "usd": 7.699373699999999
   }
 }
