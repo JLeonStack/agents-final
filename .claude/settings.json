@@ -7,8 +7,16 @@
     "Lo que estas reglas hacen mecanico es R7 y la ultima linea de user_prompt.md:",
     "«si el validador falla, arregla el JSON — no toques el validador ni el schema».",
     "Alcance real y sus limites: GOBIERNO.md §1.",
+    "",
+    "DONDE VIVE ESTE ARCHIVO. La fuente de verdad es `jaula/settings.json`, en una ruta",
+    "visible; `.claude/settings.json` es la copia que Claude Code carga, y la escribe",
+    "`herramientas/sincronizar.sh`. Es la misma costura declarada que prompts/agentes/ ↔",
+    ".claude/agents/ (DECISIONES.md §7), y por el mismo motivo que la §16: una regla que",
+    "solo existe adentro de una carpeta oculta no la puede verificar un tercero. El control",
+    "D11 de verificar-repo.py compara las dos copias byte a byte.",
+    "",
     "Las corridas archivadas (00-03 y el banco) se deniegan una por una y no con corridas/0*: una corrida nueva tiene que poder escribirse. Una corrida se archiva como salio.",
-    "Se protege .claude/settings.json y no .claude/ entero: sincronizar.sh tiene que poder escribir en .claude/agents/. Lo que un agente no puede hacer es ampliar sus permisos."
+    "Se protege .claude/settings.json y jaula/ y no .claude/ entero: sincronizar.sh tiene que poder escribir en .claude/agents/. Lo que un agente no puede hacer es ampliar sus permisos, ni por la copia ni por el original."
   ],
   "permissions": {
     "deny": [
@@ -30,6 +38,8 @@
       "Edit(corridas/03-*/**)",
       "Write(corridas/banco-modelos/**)",
       "Edit(corridas/banco-modelos/**)",
+      "Write(jaula/**)",
+      "Edit(jaula/**)",
       "Write(.claude/settings.json)",
       "Edit(.claude/settings.json)"
     ],
