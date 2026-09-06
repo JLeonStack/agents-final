@@ -25,7 +25,7 @@ Entregar: **1 keyword principal**, **entre 2 y 5 secundarias**, y **al menos 2 e
 con su anchor text, apuntando a URLs que existan de verdad en el sitio.
 
 ## 4 · RESTRICCIONES
-- Heredás **R1 a R7**. R1 te aplica de una forma particular: **está prohibido inventar volúmenes
+- Heredás **R1 a R8**. R1 te aplica de una forma particular: **está prohibido inventar volúmenes
   de búsqueda, dificultad de keyword o posiciones.** No tenemos acceso a esa data. Si hace
   falta, `[DATO FALTANTE: volumen de búsqueda de X, requiere Search Console]`.
 - **Solo URLs que existan** en `activos/sitio-home.md`. Una URL inventada es una promesa rota.

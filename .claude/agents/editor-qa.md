@@ -1,6 +1,6 @@
 ---
 name: editor-qa
-description: Control de calidad. Verifica el plan completo contra R1-R7, marca lo no verificable y decide si la salida es apta para firma humana. Tercera ola, después de todos.
+description: Control de calidad. Verifica el plan completo contra R1-R8, marca lo no verificable y decide si la salida es apta para firma humana. Tercera ola, después de todos.
 tools: Read, Glob, Grep
 model: sonnet
 ---

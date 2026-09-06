@@ -25,7 +25,7 @@ clic en el blog.
 Escribir **2 o 3 piezas cortas**: al menos una de LinkedIn y al menos una de X.
 
 ## 4 · RESTRICCIONES
-- Heredás **R1 a R7**.
+- Heredás **R1 a R8**.
 - **LinkedIn: máximo 120 palabras. X: máximo 280 caracteres por posteo**; si es hilo, numerá y
   poné el límite por posteo del hilo.
 - **Cero emojis decorativos y cero hashtags de relleno.** Como máximo un hashtag, y solo si

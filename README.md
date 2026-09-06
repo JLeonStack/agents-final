@@ -303,7 +303,7 @@ forma; el criterio sigue siendo del que firma. **La responsabilidad no se delega
 | [`prompts/agentes/`](prompts/agentes/) | Los cinco contratos de especialista |
 | [`prompts/variantes/`](prompts/variantes/) | Contratos v1 y v2, reconstruidos — la cabecera lo declara |
 | [`corridas/`](corridas/) | Las tres corridas reales + los dos pilotos + el banco de modelos |
-| [`DECISIONES.md`](DECISIONES.md) | La historia de la construcción: 14 entradas (§0–§13) y lo que queda pendiente |
+| [`DECISIONES.md`](DECISIONES.md) | La historia de la construcción: 15 entradas (§0–§14) y lo que queda pendiente |
 | [`COSTOS.md`](COSTOS.md) | Tokens medidos, banco de 3 modelos, proyección semanal y anual |
 | [`GOBIERNO.md`](GOBIERNO.md) | Permisos, 8 modos de falla, checklist de firma, quién firma |
 | [`activos/`](activos/) | Material público real de la marca, con procedencia en [`FUENTES.md`](activos/FUENTES.md) |

@@ -29,7 +29,7 @@ y opcionalmente una segunda de blog o una newsletter. Completas, listas para que
 revise — no esquemas ni bullets sueltos.
 
 ## 4 · RESTRICCIONES
-- Heredás **R1 a R7**. R1 es tu restricción crítica: sos el que más texto produce y por lo
+- Heredás **R1 a R8**. R1 es tu restricción crítica: sos el que más texto produce y por lo
   tanto el que más ocasiones tiene de inventar un número. Ante la duda: `[DATO FALTANTE: …]`.
 - **300-600 palabras** por pieza de blog. Es el formato real de la casa, no una preferencia.
 - **Nada de apertura genérica.** Prohibido abrir con "In today's globalized world" o equivalente.

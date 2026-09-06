@@ -473,3 +473,48 @@ lugares donde el dato quedó escrito, no sobre los que se ven. El repo tenía cu
 el contenido de los archivos, los **nombres** de los archivos (dos activos había que
 renombrar), los mensajes de commit, y el historial de objetos. Los cuatro había que tocar, y
 tres de los cuatro no aparecen cuando uno abre el proyecto.
+
+---
+
+## 14 · R8 estaba en el contrato del director y no en la herencia de los especialistas
+
+**Hallazgo de una última auditoría, no de una corrida.** Al revisar el repositorio contra la
+consigna apareció una inconsistencia que ninguna de las dos autoevaluaciones hostiles había
+visto: el `description` de `editor-qa` decía que verificaba contra **R1-R7**, mientras el
+cuerpo de su propio contrato, veinte líneas más abajo, decía **R1 a R8**.
+
+Tirando de ese hilo, el problema era más grande que un número mal escrito:
+
+```
+prompts/system_prompt.md:89    → R8 existe, está declarada
+prompts/system_prompt.md:147   → el diagrama de olas decía "verifica todo contra R1–R7"
+community-social.md:28         → "Heredás R1 a R7."
+redactor-contenido.md:32       → "Heredás R1 a R7."
+seo-analista.md:28             → "Heredás R1 a R7."
+estratega-posicionamiento.md:34→ "Heredás R1 a R7."
+```
+
+**Diagnóstico — ¿qué pieza del contrato falló?** La cláusula de herencia, que vive en
+RESTRICCIONES de cada especialista. Cuando agregué R8 para arreglar F1 (§3), la escribí en el
+contrato del director y la bajé a la sección **FORMATO** de los dos que escriben piezas
+—`redactor` y `community-social` dicen `id` **según R8** con la convención literal— pero
+**nunca actualicé la línea que enumera qué reglas heredan**. Una restricción agregada tarde se
+propaga a donde uno la está usando en ese momento, y no a las demás menciones de la lista.
+
+**Por qué las corridas 02 y 03 son válidas igual.** La regla operativa —el esquema de ids—
+estaba presente y era literal en la sección FORMATO de los dos agentes que efectivamente
+nombran piezas. Por eso C3 pasa en 02 y 03. Lo que estaba mal era la enumeración, no la
+instrucción: los agentes recibieron R8, el contrato decía que no se las estaba dando.
+
+**Cambio.** `R1 a R8` en los cuatro especialistas y en el diagrama de olas del director,
+sincronizado a `.claude/agents/`. **Las dos variantes de `prompts/variantes/` se dejaron con
+R1–R7 a propósito**: son reconstrucciones de estados pasados, y v2 *efectivamente* tenía esa
+línea desactualizada — corregirla ahí sería falsificar la historia que documentan.
+
+**La lección.** Un contrato de varias páginas repartido en seis archivos no tiene una sola
+fuente de verdad para "cuántas reglas hay": la tiene en la lista, en el diagrama, en cada
+cláusula de herencia y en cada sección de formato. Agregar una regla es un cambio en *n*
+lugares, y el sistema no avisa cuando quedan *n-1*. Las mismas cuatro-caras que §13 encontró
+para un dato, acá aparecen para una regla — y esta vez ningún control automático la detectó,
+porque `validar.py` verifica salidas, no contratos. Es, exactamente, el verificador de
+documentación-contra-repositorio que quedó como pendiente #2 al cierre de §12.

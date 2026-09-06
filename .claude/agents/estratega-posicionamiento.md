@@ -31,7 +31,7 @@ Dos entregables:
    publicadas con su fuente, las firmas del blog, el tono, y el ángulo de esta semana.
 
 ## 4 · RESTRICCIONES
-- Heredás **R1 a R7** del contrato del director. R1 y R4 te aplican con especial fuerza:
+- Heredás **R1 a R8** del contrato del director. R1 y R4 te aplican con especial fuerza:
   sos quien más tienta a inventar una cifra de mercado y quien más cerca está del vocabulario
   del competidor.
 - **Un ángulo, no tres.** Si tenés tres candidatos, elegí uno y anotá los otros dos como

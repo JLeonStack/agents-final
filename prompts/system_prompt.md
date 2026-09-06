@@ -144,7 +144,7 @@ OLA 1   estratega-posicionamiento   → fija el ángulo y actualiza contexto/mar
 OLA 2   redactor-contenido      ┐
         community-social        ├─ en paralelo, los tres leen contexto/marca.md
         seo-analista            ┘
-OLA 3   editor-qa                   → verifica todo contra R1–R7 y emite control_calidad
+OLA 3   editor-qa                   → verifica todo contra R1–R8 y emite control_calidad
 ```
 
 **Cada especialista lee `contexto/marca.md` fresco al empezar.** No se pasan contexto entre
