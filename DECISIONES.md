@@ -424,3 +424,52 @@ error que esta entrada documenta.
 4. **Ejercitar `WebFetch` dentro de una corrida**, o quitarlo de los contratos que lo declaran.
 5. **Partir `contexto/marca.md`** en la parte estable y la semanal: 453 líneas leídas cinco
    veces por corrida son la palanca de costo más grande del sistema (`COSTOS.md` §7).
+
+---
+
+## 13 · Anonimizar la marca, y por qué no alcanzaba con cambiar los archivos
+
+**Decisión tomada al cierre.** El titular del material pidió no ser nombrado en un repositorio
+público. Todo el material que el sistema usó ya era público —sitio, blog, competencia— pero
+*material público sobre una empresa identificable sigue siendo material sobre una empresa
+identificable*, y publicarlo en un repo con el análisis competitivo al lado es otra cosa que
+leerlo en su sitio.
+
+**Qué se redactó.** El nombre de la empresa y su dominio, el nombre de su categoría propia y
+de sus tres pilares, los tres niveles de producto, la lista de clientes, las dos personas que
+firman su blog, el competidor y sus claims, las cuatro cifras de resultados que publica, y los
+títulos de blog más distintivos. Cada uno reemplazado por un equivalente ficticio, de forma
+consistente en **46 archivos**, con dominios en el TLD reservado `.example` — que por
+definición no puede corresponder a ningún sitio real.
+
+**Qué no cambió:** ninguna corrida, ninguna falla, ningún conteo de tokens, ninguna decisión.
+Y se verificó que el sistema siguiera funcionando sobre el material redactado:
+
+```
+validar.py sobre las tres corridas → 02 y 03 pasan, 01 falla en C3 (como antes y a propósito)
+render.py sobre las tres           → regenera el markdown byte a byte, sin diferencias
+barrido de residuo                 → cero apariciones de cualquier término identificatorio,
+                                     en contenidos Y en nombres de archivo
+```
+
+El control C2 —que verifica cada cifra contra `activos/`— sigue pasando, porque las cifras se
+cambiaron **en los activos y en las piezas a la vez**. Si se hubieran cambiado solo en un lado,
+el propio validador del sistema habría detectado la inconsistencia. Es la primera vez en el
+trabajo que un control sirvió para verificar una operación sobre el repositorio y no sobre una
+corrida.
+
+### El paso que casi se me pasa: la historia de git
+
+Cambiar los archivos **no alcanza**. Los doce commits anteriores contenían el material sin
+redactar, y `git log -p` los recupera enteros. Un repositorio que se publica con el nombre real
+en su historia está tan expuesto como uno que lo tiene en el README — más, porque nadie lo mira.
+
+**La historia anterior se descartó por completo y se reconstruyó desde cero**, con la misma
+secuencia de commits y el contenido ya redactado. Ningún commit de este repositorio contuvo
+jamás el nombre real.
+
+**La lección, que es de gobierno y no de git:** una redacción se piensa sobre *todos* los
+lugares donde el dato quedó escrito, no sobre los que se ven. El repo tenía cuatro:
+el contenido de los archivos, los **nombres** de los archivos (dos activos había que
+renombrar), los mensajes de commit, y el historial de objetos. Los cuatro había que tocar, y
+tres de los cuatro no aparecen cuando uno abre el proyecto.
