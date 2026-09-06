@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/acme-agentes/esquemas/plan_semanal.schema.json",
+  "title": "Plan de contenidos semanal — Acme",
+  "description": "Contrato de salida del equipo de agentes de marketing. Toda corrida produce exactamente esta forma. Schema v2 (2026-09-05): se agregó piezas[].fecha. Schema v3 (2026-09-05): se agrego piezas[].firma_autor.",
+  "type": "object",
+  "required": [
+    "semana",
+    "rango",
+    "generado_utc",
+    "angulo_semanal",
+    "piezas",
+    "seo",
+    "control_calidad",
+    "firma"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "semana": {
+      "type": "string",
+      "pattern": "^2[0-9]{3}-W[0-9]{2}$"
+    },
+    "rango": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2} / [0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "generado_utc": {
+      "type": "string"
+    },
+    "modelo": {
+      "type": "string",
+      "description": "Modelo con el que se generó la corrida"
+    },
+    "angulo_semanal": {
+      "type": "object",
+      "required": [
+        "titular",
+        "tesis",
+        "pilar_native-reach",
+        "publico",
+        "cta"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "titular": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 120
+        },
+        "tesis": {
+          "type": "string",
+          "minLength": 40,
+          "maxLength": 600
+        },
+        "pilar_native-reach": {
+          "enum": [
+            "InSpeech",
+            "InContext",
+            "InRegion"
+          ]
+        },
+        "publico": {
+          "type": "string",
+          "minLength": 10
+        },
+        "cta": {
+          "type": "string",
+          "minLength": 5
+        }
+      }
+    },
+    "piezas": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "canal",
+          "fecha",
+          "titulo",
+          "cuerpo",
+          "cta",
+          "fuentes"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "canal": {
+            "enum": [
+              "blog",
+              "linkedin",
+              "x",
+              "newsletter"
+            ]
+          },
+          "fecha": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+            "description": "Fecha de publicación propuesta. Agregado en v2 del schema: el piloto reveló que el calendario vivía solo en plan.md y derivaba respecto del JSON."
+          },
+          "titulo": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 140
+          },
+          "cuerpo": {
+            "type": "string",
+            "minLength": 100
+          },
+          "cta": {
+            "type": "string",
+            "minLength": 5
+          },
+          "firma_autor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Autor que firma la pieza. Agregado en schema v3: el editor-qa de la corrida 01 senalo que el reparto de firmas que exige el contrato no era registrable en la salida."
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fuentes": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Rutas a archivos de activos/ que respaldan las afirmaciones de la pieza. VERIFICADO por validar.py: el archivo debe existir.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "required": [
+        "keyword_principal",
+        "keywords_secundarias",
+        "enlazado_interno"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "keyword_principal": {
+          "type": "string",
+          "minLength": 3
+        },
+        "keywords_secundarias": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string"
+          }
+        },
+        "enlazado_interno": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "desde",
+              "hacia",
+              "anchor"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "desde": {
+                "type": "string"
+              },
+              "hacia": {
+                "type": "string"
+              },
+              "anchor": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "control_calidad": {
+      "type": "object",
+      "required": [
+        "cifras_usadas",
+        "datos_faltantes",
+        "riesgos",
+        "apto_para_firma"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "cifras_usadas": {
+          "type": "array",
+          "description": "Cada cifra que aparece en las piezas, con el archivo de activos/ que la respalda.",
+          "items": {
+            "type": "object",
+            "required": [
+              "cifra",
+              "fuente"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "cifra": {
+                "type": "string"
+              },
+              "fuente": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "datos_faltantes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "riesgos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "apto_para_firma": {
+          "type": "boolean"
+        }
+      }
+    },
+    "firma": {
+      "type": "object",
+      "required": [
+        "requiere_firma_humana",
+        "firmante",
+        "fecha_firma"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "requiere_firma_humana": {
+          "const": true
+        },
+        "firmante": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fecha_firma": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}
