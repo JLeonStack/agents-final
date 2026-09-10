@@ -54,6 +54,34 @@ correrlas. Son dos capas, y una tercera que no es técnica:
 | **2 · `deny` de [`jaula/settings.json`](jaula/settings.json)** | Deniega `Write` y `Edit` sobre `esquemas/`, `herramientas/`, `prompts/`, `activos/`, las corridas archivadas, la propia `jaula/` y `.claude/settings.json` | **Todos**, director incluido | **Vigente y verificada en esta sesión** (ver abajo) |
 | 3 · La instrucción del contrato | *«si el validador falla, arreglá el JSON — no toques el validador ni el schema»* | Todos | Vigente desde v1. Ya no es la única barrera |
 
+**Qué deniega, textualmente.** Las 22 reglas de `deny` de
+[`jaula/settings.json`](jaula/settings.json), copiadas tal cual. Están también acá por la misma
+razón que la jaula salió de `.claude/`: **una regla que un auditor no puede leer no es un
+control.**
+
+```jsonc
+"deny": [
+  "Write(esquemas/**)",        "Edit(esquemas/**)",
+  "Write(herramientas/**)",    "Edit(herramientas/**)",
+  "Write(prompts/**)",         "Edit(prompts/**)",
+  "Write(activos/**)",         "Edit(activos/**)",
+  "Write(corridas/00-*/**)",   "Edit(corridas/00-*/**)",
+  "Write(corridas/01-*/**)",   "Edit(corridas/01-*/**)",
+  "Write(corridas/02-*/**)",   "Edit(corridas/02-*/**)",
+  "Write(corridas/03-*/**)",   "Edit(corridas/03-*/**)",
+  "Write(corridas/banco-modelos/**)", "Edit(corridas/banco-modelos/**)",
+  "Write(jaula/**)",           "Edit(jaula/**)",
+  "Write(.claude/settings.json)", "Edit(.claude/settings.json)"
+],
+"ask": ["Bash(git push:*)"]
+```
+
+Las corridas archivadas se deniegan **una por una** y no con `corridas/**`: una corrida nueva
+tiene que poder escribirse; una archivada, no. Y se protege `.claude/settings.json` y `jaula/`
+en vez de `.claude/` entero porque `sincronizar.sh` necesita escribir en `.claude/agents/`.
+**Lo que ningún agente puede hacer es ampliarse los permisos, ni por la copia ni por el
+original.**
+
 **Dónde está el archivo, y por qué importa.** La fuente de verdad es
 [`jaula/settings.json`](jaula/settings.json), una ruta visible con su propio
 [README](jaula/README.md); `.claude/settings.json` es la copia que Claude Code carga, y la

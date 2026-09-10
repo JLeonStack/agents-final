@@ -52,7 +52,29 @@ python3 herramientas/verificar-repo.py
 Trece controles del repositorio **contra su propia documentación** — contratos sincronizados,
 R1–R8 coherente en los seis, las tres corridas completas y reconstruibles byte a byte, la jaula
 de permisos cargada y sincronizada, cero enlaces rotos y **ningún dato que viva solo en una
-carpeta oculta**. Exit 1 si algo no cierra, y dice qué. Una corrida completa
+carpeta oculta**. Exit 1 si algo no cierra, y dice qué.
+
+Los trece, tal como los imprime
+[`verificar-repo.py`](herramientas/verificar-repo.py). Están acá para que «trece controles» se
+pueda comprobar sin abrir el script:
+
+| | Qué verifica |
+|---|---|
+| **D1** | `prompts/agentes/` ↔ `.claude/agents/` sincronizados |
+| **D2** | frontmatter completo en los cinco contratos, y **ninguno declara `Bash`** |
+| **D3** | los cinco especialistas heredan R1 a R8 |
+| **D4** | el contrato del director enumera R1..R8 sin huecos |
+| **D5** | las tres corridas tienen sus archivos obligatorios |
+| **D6** | el validador da hoy el código que cada `metadata.json` declara |
+| **D7** | `render.py` reproduce `plan.md` byte a byte desde el JSON archivado |
+| **D8** | las rutas del repo enlazadas desde los documentos existen |
+| **D9** | la jaula de permisos está cargada y protege la verificación |
+| **D10** | el schema exige firma humana por construcción |
+| **D11** | `jaula/settings.json` ↔ `.claude/settings.json` sincronizados |
+| **D12** | ningún dato del repositorio vive solo en una ruta oculta |
+| **D13** | `PROCEDENCIA.md` coincide con la metadata de las tres corridas |
+
+Una corrida completa
 cuesta **≈ USD 3,12** —2,62 medidos, 0,50 proyectados; el desglose en
 [`COSTOS.md`](COSTOS.md) §6— y tarda unos 35 minutos, de los cuales 10 son de la persona que
 revisa y firma.

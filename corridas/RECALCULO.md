@@ -4,20 +4,13 @@
 corrida. Este dice **que las cuentas dan**: por cada corrida, números de su propia salida
 rehechos desde su propia entrada, con la operación escrita, el resultado y el desvío.
 
-Una corrida es reconstruible cuando un tercero puede rehacer un número sin preguntar nada.
 Hasta acá el repo tenía entrada, salida, fecha y dato de origen —lo necesario para *repetir*—
-pero ninguna cuenta hecha delante del lector. Eso es lo que falta y lo que agrega esta página.
+pero ninguna cuenta hecha delante del lector. Eso es lo que agrega esta página.
 
-**Ninguno de estos números lo escribí a mano.** Todos salen de los archivos versionados, y
-cualquiera los puede rehacer con los comandos de la última sección.
-
----
-
-## Cómo leer las tablas
-
-Cada fila es una cuenta: **de qué dato de la entrada sale**, qué operación se hace, qué da,
-qué dice la salida archivada y cuánto se separan. El desvío es la columna que importa; si
-alguna dejara de ser `0`, el repo estaría mintiendo en ese punto.
+Cada fila es una cuenta: de qué dato de la entrada sale, qué operación se hace, qué da, qué
+dice la salida archivada y cuánto se separan. **El desvío es la columna que importa:** si
+alguna dejara de ser `0`, el repo estaría mintiendo en ese punto. Ninguno de estos números
+está escrito a mano — todos se rehacen con los comandos de la última sección.
 
 ---
 
@@ -102,16 +95,16 @@ subagente con transcript propio, y por eso cada uno se mide solo.
 **La razón que decide:** `1,331654 / 0,466802 = 2,853`. Sonnet pasa los nueve criterios por
 **2,85× menos** que Opus, y por eso es el modelo de producción.
 
-**Ninguno de los tres brazos escribió caché con TTL de 1 hora** (`cache_w_1h = 0` en los tres).
-Por eso los tres costos son idénticos antes y después de la corrección T4: la comparación de
-modelos, que es de donde sale la decisión, no depende de ese arreglo.
+**Ninguno de los tres brazos escribió caché con TTL de 1 hora** (`cache_w_1h = 0` en los tres),
+así que los tres costos son idénticos antes y después de la corrección T4: la decisión de modelo
+no depende de ese arreglo.
 
 ---
 
 ## Cómo rehacer todo esto
 
-Las filas de costo salen del `consumo.json` archivado de cada corrida, que es el consumo que
-la API facturó, no una estimación:
+Las filas de costo salen del `consumo.json` archivado de cada corrida — el consumo que la API
+facturó, no una estimación:
 
 ```bash
 python3 herramientas/costo.py --desde 2026-09-05T21:36:08Z --hasta 2026-09-05T21:54:26Z  # 01
@@ -127,9 +120,9 @@ python3 herramientas/validar.py corridas/02-2026-09-05-w38/salida/plan_semanal.j
 python3 herramientas/validar.py corridas/01-2026-09-05-w37/salida/plan_semanal.json  # exit 1
 ```
 
-**Que la corrida 01 salga con `exit 1` es el resultado esperado**, no un repo roto: es la fila
-6 de su tabla, y está declarado en `metadata.json` (`validador: exit 0` con el de entonces,
+**Que la corrida 01 salga con `exit 1` es el resultado esperado**, no un repo roto: es la fila 6
+de su tabla, declarada en su `metadata.json` (`validador: exit 0` con el de entonces,
 `validador_actual: exit 1`) y en `DECISIONES.md` §8.
 
-Las filas de fechas y de ids no necesitan ninguna herramienta: son la semana ISO y un conteo
-por canal, y se hacen a mano contra el JSON archivado.
+Las filas de fechas y de ids no necesitan herramienta: son la semana ISO y un conteo por canal,
+a mano contra el JSON archivado.
