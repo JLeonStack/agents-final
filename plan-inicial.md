@@ -285,7 +285,7 @@ y es un riesgo real bien gestionado en vez de uno hipotético bien redactado.
 | **Mié 9/9** | **Modelo** | Banco de pruebas Opus 5 / Sonnet 5 / Haiku 4.5 · modelo elegido y justificado · **corrida 03** | «banco de modelos + corrida 03» |
 | **Jue 10/9** | **Checkpoint (clase)** | Llevar el avance. **Mirar la prueba de fuego y anotar exactamente qué busca el evaluador ganador.** Esa noche: ajustar el repo a lo observado · `COSTOS.md` | «costos + ajustes post-checkpoint» |
 | **Vie 11/9** | **Gobierno** | `GOBIERNO.md` completo · `DECISIONES.md` cerrado con las 5–6 entradas | «gobierno y decisiones» |
-| **Sáb 12/9** | **Blindar** | README estándar + mapa de evidencia · **autoevaluación hostil** (§8) · pasada de sanitización · **prueba del tercero** desde carpeta limpia | «README + autoevaluación» |
+| **Sáb 12/9** | **Blindar** | README estándar + mapa de evidencia · **revisión adversarial** (§8) · pasada de sanitización · **prueba del tercero** desde carpeta limpia | «README + revisión adversarial» |
 | **Dom 13/9** | **Entregar temprano** | Verificación final y entrega en el campus **a la mañana, no a las 23:00** | «entrega final» |
 
 **Commit todos los días.** El enunciado del parcial lo dice de sus propios repos y aplica igual acá:
@@ -298,7 +298,7 @@ la nota; la cantidad de especialistas no aparece en ninguna dimensión.
 
 ---
 
-## 8 · La autoevaluación hostil (sábado 12/9 — el paso de mayor rendimiento)
+## 8 · La revisión adversarial (sábado 12/9 — el paso de mayor rendimiento)
 
 Antes de entregar, abrir una sesión limpia y darle esta instrucción a un agente:
 
@@ -326,7 +326,7 @@ Los evaluadores de tus compañeros están construidos específicamente para dete
 | Las 3 corridas llevan más tiempo del previsto | **Alta** (el enunciado lo advierte) | La corrida piloto del domingo existe para descubrirlo el día 2, no el día 7 |
 | 8 días, no las 2,5 semanas del enunciado | Cierta | El punto de corte del martes y el cronograma con entrega el sábado |
 | El repo queda prolijo pero sin historia | Media | `DECISIONES.md` se escribe **el día que pasa la falla**, no al final. El proceso no se reconstruye de memoria |
-| El evaluador no encuentra la evidencia | Media | Mapa de evidencia en el README + autoevaluación hostil del sábado |
+| El evaluador no encuentra la evidencia | Media | Mapa de evidencia en el README + revisión adversarial del sábado |
 
 ---
 
@@ -341,5 +341,5 @@ Los evaluadores de tus compañeros están construidos específicamente para dete
 - [ ] `DECISIONES.md` con 5–6 entradas, ≥2 fallas serias textuales y ≥1 achique de alcance
 - [ ] `COSTOS.md` con tokens **medidos**, banco de 3 modelos y proyección anual
 - [ ] `GOBIERNO.md` con permisos, 6 modos de falla, checklist y firma
-- [ ] Autoevaluación hostil corrida, y sus huecos tapados
+- [ ] Revisión adversarial corrida, y sus huecos tapados
 - [ ] Ni una sola afirmación en el repo sin un archivo que la respalde

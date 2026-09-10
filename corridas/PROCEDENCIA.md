@@ -10,6 +10,11 @@ verificador falla.
 Lo que `activos/FUENTES.md` hace por el material de marca —decir de dónde salió cada archivo—
 esta página lo hace por las corridas.
 
+**Y lo que esta página no hace, lo hace [`RECALCULO.md`](RECALCULO.md):** acá está de dónde
+salió cada corrida; ahí están las **cuentas hechas**, corrida por corrida, con números de la
+salida rehechos desde la entrada, la operación escrita y el desvío. Poder repetir una corrida
+y que sus números cierren son dos cosas distintas, y las dos hacen falta.
+
 ---
 
 ## Las tres corridas reales

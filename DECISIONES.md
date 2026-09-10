@@ -319,7 +319,7 @@ lado de la línea que el C4 de la entrada 6: verificación semántica, no mecán
 
 ---
 
-## 11 · La autoevaluación hostil, y qué encontró
+## 11 · La revisión adversarial, y qué encontró
 
 Antes de dar el trabajo por terminado se corrió un **agente evaluador hostil** con la rúbrica
 oficial de la materia y una instrucción explícita de buscar fraude: afirmaciones sin respaldo,
@@ -410,7 +410,7 @@ Los cinco están corregidos.
 > **anclaje**. El hecho basta; la alabanza sobra.»
 
 La entrada 11 citaba el puntaje que había puesto el primer evaluador y una frase favorable
-suya. **Documentar que se corrió una autoevaluación es proceso; citar su elogio es otra cosa.**
+suya. **Documentar que se corrió una revisión adversarial es proceso; citar su elogio es otra cosa.**
 Se sacó. Queda qué encontró, no qué opinó.
 
 ### Lo que esta segunda pasada realmente enseñó
@@ -508,7 +508,7 @@ tres de los cuatro no aparecen cuando uno abre el proyecto.
 ## 14 · R8 estaba en el contrato del director y no en la herencia de los especialistas
 
 **Hallazgo de una última auditoría, no de una corrida.** Al revisar el repositorio contra la
-consigna apareció una inconsistencia que ninguna de las dos autoevaluaciones hostiles había
+consigna apareció una inconsistencia que ninguna de las dos revisiones adversariales había
 visto: el `description` de `editor-qa` decía que verificaba contra **R1-R7**, mientras el
 cuerpo de su propio contrato, veinte líneas más abajo, decía **R1 a R8**.
 

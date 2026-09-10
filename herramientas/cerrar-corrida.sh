@@ -15,10 +15,10 @@ DIR="${1%/}"
 JSON="$DIR/salida/plan_semanal.json"
 [[ -f "$JSON" ]] || { echo "✗ falta $JSON — la corrida no produjo salida"; exit 1; }
 
-[[ -f "$DIR/.fin" ]] || date -u +%Y-%m-%dT%H:%M:%SZ > "$DIR/.fin"
-INICIO=$(cat "$DIR/.inicio" 2>/dev/null || echo "")
-FIN=$(cat "$DIR/.fin")
-echo "── ventana de la corrida: ${INICIO:-¿sin .inicio?} → $FIN"
+[[ -f "$DIR/ventana-fin.txt" ]] || date -u +%Y-%m-%dT%H:%M:%SZ > "$DIR/ventana-fin.txt"
+INICIO=$(cat "$DIR/ventana-inicio.txt" 2>/dev/null || echo "")
+FIN=$(cat "$DIR/ventana-fin.txt")
+echo "── ventana de la corrida: ${INICIO:-¿sin ventana-inicio.txt?} → $FIN"
 
 echo
 echo "── 1/4 · validador (exit 0 obligatorio para una corrida entregable)"
@@ -45,7 +45,7 @@ if [[ -n "$INICIO" ]]; then
     echo "  no se midió. Una corrida sin consumo medido se declara, no se estima."
   fi
 else
-  echo "⚠ sin .inicio no hay ventana que medir."
+  echo "⚠ sin ventana-inicio.txt no hay ventana que medir."
 fi
 
 echo
@@ -59,7 +59,7 @@ meta = d / "metadata.json"
 datos = {
     "corrida": d.name.split("-")[0],
     "semana": plan.get("semana"),
-    "inicio_utc": (d / ".inicio").read_text().strip() if (d / ".inicio").exists() else None,
+    "inicio_utc": (d / "ventana-inicio.txt").read_text().strip() if (d / "ventana-inicio.txt").exists() else None,
     "fin_utc": (d / ".fin").read_text().strip(),
     "contrato": "v3",
     "schema": "v3",

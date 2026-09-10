@@ -214,6 +214,15 @@ y después de la corrección: los tres corrieron como subagentes, y ningún suba
 proyecto escribió caché con TTL de 1 hora. La comparación de modelos, que es de donde sale la
 decisión, no depende del arreglo.
 
+**El consumo crudo de los tres brazos, separado uno del otro, está en
+[`corridas/RECALCULO.md`](corridas/RECALCULO.md).** Importa que esté: el brazo de Opus no se
+corrió aparte —es el `redactor-contenido` de la corrida 02— y sin ese desglose sus `1,3317`
+habría que creerlos o estimarlos restando del total de la corrida. No hace falta ninguna de las
+dos cosas: **ese subagente tiene transcript propio y se mide solo**, y ahí están sus 15 llamadas,
+sus 57.493 tokens de escritura de caché, sus 990.446 de lectura y sus 19.078 de salida, con la
+multiplicación que da `1,331654` y desvío cero contra esta tabla. La razón que decide la
+elección —`1,331654 / 0,466802 = 2,853`— se rehace desde ahí sin salir del repositorio.
+
 **Por qué la tercera falla de Haiku es la que decide.** Haiku hizo la misma inferencia no
 publicada que hicieron Sonnet y Opus — pero fue el único que declaró no tener ningún riesgo.
 En un sistema cuyo mecanismo de seguridad es que los agentes digan lo que no pueden

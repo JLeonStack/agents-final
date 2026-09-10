@@ -4,7 +4,7 @@
 #   bash herramientas/nueva-corrida.sh 2026-W40 2026-09-28 2026-10-04
 #
 # Crea corridas/<NN>-<hoy>-w<NN semana>/ con entrada.md a completar, salida/ vacio y la
-# marca .inicio. NO invoca ningun agente: la corrida la dispara una persona, con el
+# marca ventana-inicio.txt. NO invoca ningun agente: la corrida la dispara una persona, con el
 # prompt que imprime OPERACION.md paso 3.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -32,7 +32,7 @@ DIR="corridas/${NN}-${HOY}-${WNN}"
 if [[ -e "$DIR" ]]; then echo "✗ ya existe $DIR"; exit 1; fi
 
 mkdir -p "$DIR/salida"
-date -u +%Y-%m-%dT%H:%M:%SZ > "$DIR/.inicio"
+date -u +%Y-%m-%dT%H:%M:%SZ > "$DIR/ventana-inicio.txt"
 
 cat > "$DIR/entrada.md" <<EOF
 # Corrida ${NN} — semana ${SEMANA}
@@ -76,7 +76,7 @@ convierte la corrida en evidencia; escribirlas después es escribir el resultado
 EOF
 
 echo "✓ $DIR creado"
-echo "  · .inicio      $(cat "$DIR/.inicio")"
+echo "  · ventana-inicio.txt      $(cat "$DIR/ventana-inicio.txt")"
 echo "  · entrada.md   completá el brief y las hipótesis ANTES de correr"
 echo "  · salida/      lo escribe el director durante la corrida"
 echo

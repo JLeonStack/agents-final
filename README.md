@@ -391,9 +391,10 @@ forma; el criterio sigue siendo del que firma. **La responsabilidad no se delega
 | [`prompts/variantes/`](prompts/variantes/) | Contratos v1 y v2, reconstruidos — la cabecera lo declara |
 | [`corridas/`](corridas/) | Las tres corridas reales + los dos pilotos + el banco de modelos |
 | [`corridas/PROCEDENCIA.md`](corridas/PROCEDENCIA.md) | **Cómo reconstruir cada corrida:** entrada, salida, fecha y el dato de origen que leyó, en una tabla |
+| [`corridas/RECALCULO.md`](corridas/RECALCULO.md) | **Que las cuentas dan:** por corrida, números de su salida rehechos desde su entrada, con la operación y el desvío |
 | [`DECISIONES.md`](DECISIONES.md) | La historia de la construcción: 17 entradas (§0–§16) y lo que queda pendiente |
 | [`COSTOS.md`](COSTOS.md) | Tokens medidos, banco de 3 modelos, proyección semanal y anual |
-| [`GOBIERNO.md`](GOBIERNO.md) | Permisos, 8 modos de falla, checklist de firma, quién firma |
+| [`GOBIERNO.md`](GOBIERNO.md) | Permisos, 8 modos de falla, checklist de firma, quién firma. La **§5** trae cada restricción en dos columnas: la cita del contrato y esa misma restricción **citada actuando** en una corrida |
 | [`activos/`](activos/) | Material público real de la marca, con procedencia en [`FUENTES.md`](activos/FUENTES.md) |
 | [`contexto/marca.md`](contexto/marca.md) | El documento compartido que mantiene el estratega y leen los otros cuatro |
 | [`esquemas/`](esquemas/plan_semanal.schema.json) | El contrato de datos de la salida |
